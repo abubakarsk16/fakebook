@@ -1,0 +1,44 @@
+<div class="main-container">
+    <form [formGroup]="loginForm" (ngSubmit)="handleLogin()">
+        <!-- {{loginForm.value | json}}
+        {{loginForm.invalid | json}} -->
+        <mat-card class="example-card">
+            <mat-card-title>Welcome Back!</mat-card-title>
+            <mat-card-subtitle>Please enter your login credentials</mat-card-subtitle>
+            <mat-card-content>
+                <mat-form-field appearance="fill">
+                    <mat-label>Username or email</mat-label>
+                    <input matInput formControlName="username" type="text" name="username" id="username"
+                        autocomplete="username">
+                    <mat-error *ngIf="loginForm.get('username')?.hasError('required')">Username or email
+                        required</mat-error>
+                    <mat-error *ngIf="loginForm.get('username')?.hasError('incorrect')">Invalid user</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Password</mat-label>
+                    <input matInput formControlName="password" [type]="hide?'password':'text'" name="password"
+                        id="password" autocomplete="off">
+                    <button mat-icon-button type="button" matSuffix (click)="hide = !hide"
+                        [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" [tabIndex]="-1">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                    <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+                        Password required
+                    </mat-error>
+                    <mat-error *ngIf="loginForm.get('password')?.hasError('incorrect')">
+                        Invalid password
+                    </mat-error>
+                </mat-form-field>
+                <mat-checkbox formControlName="savePassword" color="primary">Remember me</mat-checkbox>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button type="submit" color="primary" [disabled]="loginForm.invalid"
+                    autofocus>LOGIN</button>
+            </mat-card-actions>
+            <mat-card-footer>
+                <mat-card-subtitle>Doesn't have an account? <a mat-button href="#" [tabIndex]="-2">sign
+                        up</a></mat-card-subtitle>
+            </mat-card-footer>
+        </mat-card>
+    </form>
+</div>
