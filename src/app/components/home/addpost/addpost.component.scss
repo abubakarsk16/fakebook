@@ -1,0 +1,22 @@
+mat-card {
+  margin-top: 30px;
+}
+
+.card-content,
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-footer {
+  padding: 10px 5px;
+}
+
+.open-dialog-button {
+  border-radius: 1rem;
+  flex-grow: 1;
+  color: gray;
+  text-align: left;
+  margin: 0 10px;
+}
