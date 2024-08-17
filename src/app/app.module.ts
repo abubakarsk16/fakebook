@@ -23,22 +23,31 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { TestComponent } from './components/test/test.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatTabsModule } from '@angular/material/tabs';
 import { AddpostComponent } from './components/home/addpost/addpost.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AddpostDialogComponent } from './components/home/addpost/addpost-dialog/addpost-dialog.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { MenuComponent } from './components/main/menu/menu.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { SnackbarComponent } from './components/snackbar/snackbar.component';
+import { ConfirmComponent } from './components/confirm/confirm.component';
 @NgModule({
   declarations: [
     AppComponent,
+    SnackbarComponent,
     LoginComponent,
     HomeComponent,
     NotfoundComponent,
     MainComponent,
-    TestComponent,
     AddpostComponent,
     AddpostDialogComponent,
+    MenuComponent,
+    ProfileComponent,
+    ConfirmComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,6 +71,9 @@ import { AddpostDialogComponent } from './components/home/addpost/addpost-dialog
     LayoutModule,
     MatTabsModule,
     MatDialogModule,
+    MatMenuModule,
+    MatProgressSpinnerModule,
+    MatSnackBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

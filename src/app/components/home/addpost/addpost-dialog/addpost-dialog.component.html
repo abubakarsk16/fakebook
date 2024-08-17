@@ -1,29 +1,36 @@
 <div class="dialog-header">
-    <h3 mat-dialog-title class="dialog-title">Create post</h3>
+    <h2 mat-dialog-title class="dialog-title">Create post</h2>
     <button mat-icon-button mat-dialog-close class="dialog-close-btn" type="button">
         <mat-icon>close</mat-icon>
     </button>
 </div>
+
 <mat-divider></mat-divider>
-<mat-dialog-content class="dialog-content">
-    <div class="user-info">
-        <img mat-card-avatar src="../../../../assets/images/man.svg" alt="avatar">
-        <span>Name of user</span>
-    </div>
-    <form [formGroup]="newPost" (ngSubmit)="handleCreatePost()">
+
+<form [formGroup]="newPost" (ngSubmit)="handleCreatePost(newPost.value)">
+    <mat-dialog-content class="dialog-content">
+        <a mat-dialog-close routerLink="/profile" class="user-info">
+            <img mat-card-avatar src="../../../../assets/images/man.svg" alt="avatar">
+            <strong class="username">{{user.name}}</strong>
+        </a>
         <!-- {{newPost.value | json}}
     {{newPost.invalid | json}} -->
         <mat-form-field appearance="fill" class="form-card-field">
-            <input matInput formControlName="title" placeholder="What's your post about? (Title)" type="text"
-                name="title" id="title" autocomplete="off" autofocus>
+            <mat-label>Title</mat-label>
+            <input matInput formControlName="title" placeholder="What's your post about?" type="text" name="title"
+                id="title" autocomplete="off" maxlength="100" autofocus>
+            <mat-error *ngIf="newPost.get('title')?.hasError('required')">Title is required</mat-error>
         </mat-form-field>
         <mat-form-field appearance="fill" class="form-card-field">
+            <mat-label>Description</mat-label>
             <textarea matInput formControlName="description" placeholder="Say somthing..." name="description"
                 autocomplete="off" rows="12"></textarea>
         </mat-form-field>
-    </form>
-</mat-dialog-content>
-<mat-dialog-actions>
-    <button mat-raised-button class="form-card-button" type="submit" color="primary" [disabled]="newPost.invalid"
-        autofocus>Post</button>
-</mat-dialog-actions>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button mat-raised-button class="form-card-button" type="submit" color="primary" [disabled]="newPost.invalid"
+            autofocus>
+            Post
+        </button>
+    </mat-dialog-actions>
+</form>

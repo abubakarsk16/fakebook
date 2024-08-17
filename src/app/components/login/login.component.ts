@@ -1,10 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { LoginService } from './login.service';
 import { User } from '../../interfaces/user.interface';
 import { LOCAL_STORAGE_TOKEN } from '../../localstorage.token';
 import { SESSION_STORAGE_TOKEN } from '../../sessionstorage.token';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   pswMatched!: boolean;
 
   constructor(
-    private loginService: LoginService,
+    private loginService: AuthService,
     private fb: FormBuilder,
     @Inject(LOCAL_STORAGE_TOKEN) private localStorage: Storage,
     @Inject(SESSION_STORAGE_TOKEN) private sessionStorage: Storage,

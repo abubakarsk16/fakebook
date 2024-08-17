@@ -50,6 +50,11 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+a {
+  color: black;
+  text-decoration: none;
+}
+
 @keyframes shake {
   0% {
     margin-left: 0rem;
@@ -92,4 +97,23 @@ body {
 
 textarea {
   resize: none !important;
+}
+
+.mat-snack-bar-container {
+  &.default-snackbar {
+    background: #323232 !important;
+    color: #fff !important;
+  }
+  &.success-snackbar {
+    background: #4caf50 !important;
+    color: #fff !important;
+  }
+  &.error-snackbar {
+    background: #f44336 !important;
+    color: #fff !important;
+  }
+  &.warning-snackbar {
+    background: #ff9800 !important;
+    color: #fff !important;
+  }
 }

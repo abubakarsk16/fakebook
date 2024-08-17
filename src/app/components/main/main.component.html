@@ -2,18 +2,42 @@
     <button *ngIf="isHandset$ | async" mat-icon-button aria-label="Sidenav toggle button" (click)="drawerLeft.toggle()">
         <mat-icon>menu</mat-icon>
     </button>
-    <span>Fakebook</span>
-    <!-- <nav mat-tab-nav-bar>
-                <a href="/" mat-tab-link>Link1</a><a href="/login" mat-tab-link>Link2</a><a href="#" mat-tab-link>Link3</a>
-            </nav> -->
+    <span style="flex-grow: 1;">Fakebook</span>
+    <app-menu></app-menu>
 </mat-toolbar>
 <mat-sidenav-container class="sidenav-container">
     <mat-sidenav class="sidenav" #drawerLeft fixedInViewport [attr.role]="'navigation'"
-        [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="true"
-        [ngStyle]="(isHandset$|async)? {'width': '100%'}:{'width': '200px'}" [opened]="!(isHandset$|async)">
-        <!-- <mat-toolbar>Menu</mat-toolbar> -->
-        <h2 mat-subheader>Menu</h2>
+        [mode]="(isHandset$ | async) ? 'push' : 'side'" [opened]="true"
+        [ngStyle]="(isHandset$|async)? {'width': '100%'}:{'width': '250px'}" [opened]="!(isHandset$|async)">
+        <div *ngIf="isHandset$ | async" class="sidenav-header">
+            <button mat-icon-button type="button" (click)="drawerLeft.close()">
+                <mat-icon>keyboard_backspace</mat-icon>
+            </button>
+            <h2 class="sidenav-title">Menu</h2>
+        </div>
+        <mat-divider *ngIf="isHandset$ | async" class="divider"></mat-divider>
         <mat-nav-list>
+            <a mat-list-item href="#">Link 1</a>
+            <a mat-list-item href="#">Link 2</a>
+            <a mat-list-item href="#">Link 3</a>
+            <a mat-list-item href="#">Link 1</a>
+            <a mat-list-item href="#">Link 2</a>
+            <a mat-list-item href="#">Link 3</a>
+            <a mat-list-item href="#">Link 1</a>
+            <a mat-list-item href="#">Link 2</a>
+            <a mat-list-item href="#">Link 3</a>
+            <a mat-list-item href="#">Link 1</a>
+            <a mat-list-item href="#">Link 2</a>
+            <a mat-list-item href="#">Link 3</a>
+            <a mat-list-item href="#">Link 1</a>
+            <a mat-list-item href="#">Link 2</a>
+            <a mat-list-item href="#">Link 3</a>
+            <a mat-list-item href="#">Link 1</a>
+            <a mat-list-item href="#">Link 2</a>
+            <a mat-list-item href="#">Link 3</a>
+            <a mat-list-item href="#">Link 1</a>
+            <a mat-list-item href="#">Link 2</a>
+            <a mat-list-item href="#">Link 3</a>
             <a mat-list-item href="#">Link 1</a>
             <a mat-list-item href="#">Link 2</a>
             <a mat-list-item href="#">Link 3</a>
@@ -22,7 +46,7 @@
     <mat-sidenav *ngIf="!(isHandset$ | async)" class="sidenav" #drawerRight fixedInViewport [attr.role]="'navigation'"
         mode="side" position="end" opened>
         <!-- <mat-toolbar>Menu</mat-toolbar> -->
-        <h2 mat-subheader>Menu</h2>
+        <h2 class="sidenav-title">Menu</h2>
         <mat-nav-list>
             <a mat-list-item href="#">Link 1</a>
             <a mat-list-item href="#">Link 2</a>
