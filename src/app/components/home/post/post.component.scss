@@ -1,0 +1,17 @@
+.user-avatar {
+  background-image: url("../../../../assets/images/man.svg");
+  background-size: cover;
+  border: 1px solid gray;
+}
+
+.post-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+}
+
+.post-menu-button {
+  flex-grow: 1;
+  text-align: right;
+}

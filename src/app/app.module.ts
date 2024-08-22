@@ -13,7 +13,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDividerModule } from '@angular/material/divider';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
@@ -35,6 +35,16 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SnackbarComponent } from './components/snackbar/snackbar.component';
 import { ConfirmComponent } from './components/confirm/confirm.component';
+import { PostComponent } from './components/home/post/post.component';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { CommentComponent } from './components/home/comment/comment.component';
+import { RequestInterceptor } from './interceptors/request.interceptor';
+import { ResponseInterceptor } from './interceptors/response.interceptor';
+import { MatBadgeModule } from '@angular/material/badge';
+import { NgScrollbarModule } from 'ngx-scrollbar';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { CreatePostComponent } from './components/create-post/create-post.component';
+import { EditpostComponent } from './components/home/editpost/editpost.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,6 +58,10 @@ import { ConfirmComponent } from './components/confirm/confirm.component';
     MenuComponent,
     ProfileComponent,
     ConfirmComponent,
+    PostComponent,
+    CommentComponent,
+    CreatePostComponent,
+    EditpostComponent,
   ],
   imports: [
     BrowserModule,
@@ -74,8 +88,15 @@ import { ConfirmComponent } from './components/confirm/confirm.component';
     MatMenuModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
+    MatButtonToggleModule,
+    MatBadgeModule,
+    NgScrollbarModule,
+    MatTooltipModule,
   ],
-  providers: [],
+  providers: [
+    // { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true },
+    // { provide: HTTP_INTERCEPTORS, useClass: ResponseInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

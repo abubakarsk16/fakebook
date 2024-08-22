@@ -13,23 +13,20 @@
             <img mat-card-avatar src="../../../../assets/images/man.svg" alt="avatar">
             <strong class="username">{{user.name}}</strong>
         </a>
-        <!-- {{newPost.value | json}}
-    {{newPost.invalid | json}} -->
         <mat-form-field appearance="fill" class="form-card-field">
             <mat-label>Title</mat-label>
             <input matInput formControlName="title" placeholder="What's your post about?" type="text" name="title"
-                id="title" autocomplete="off" maxlength="100" autofocus>
+                id="title" autocomplete="off" maxlength="100" cdkFocusInitial>
             <mat-error *ngIf="newPost.get('title')?.hasError('required')">Title is required</mat-error>
         </mat-form-field>
         <mat-form-field appearance="fill" class="form-card-field">
             <mat-label>Description</mat-label>
-            <textarea matInput formControlName="description" placeholder="Say somthing..." name="description"
+            <textarea matInput formControlName="body" placeholder="Say somthing..." name="description"
                 autocomplete="off" rows="12"></textarea>
         </mat-form-field>
     </mat-dialog-content>
     <mat-dialog-actions>
-        <button mat-raised-button class="form-card-button" type="submit" color="primary" [disabled]="newPost.invalid"
-            autofocus>
+        <button mat-raised-button class="form-card-button" type="submit" color="primary" [disabled]="newPost.invalid">
             Post
         </button>
     </mat-dialog-actions>

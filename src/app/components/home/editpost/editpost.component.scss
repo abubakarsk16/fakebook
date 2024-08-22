@@ -1,0 +1,35 @@
+.dialog-header,
+.user-info {
+    display: flex;
+    justify-content: space-between !important;
+    align-items: center !important;
+}
+
+.user-info .username {
+    flex-grow: 1;
+    margin: 0 10px;
+}
+
+.dialog-header .dialog-close-btn {
+    text-align: center;
+}
+
+.dialog-header .dialog-title {
+    margin: 0;
+    flex-grow: 1 !important;
+    text-align: center;
+}
+
+mat-divider {
+    margin: 10px 5px !important;
+}
+
+.spinner-button {
+    display: flex;
+    justify-content: center;
+}
+
+.mat-progress-spinner {
+    height: 20px !important;
+    width: 20px !important;
+}

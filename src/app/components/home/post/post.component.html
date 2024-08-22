@@ -1,0 +1,51 @@
+<mat-card class="post-card" [id]="'post-'+post.id">
+    <mat-card-header>
+        <div mat-card-avatar class="user-avatar"></div>
+        <mat-card-title>
+            <a [routerLink]="'/profile/'+post.userId">{{(userOfPost$ | async)?.name}}</a>
+        </mat-card-title>
+        <mat-card-subtitle>{{postDate | date}}</mat-card-subtitle>
+        <div class="post-menu-button">
+            <button mat-icon-button matTooltip="Actions" matTooltipPosition="right" type="button"
+                [matMenuTriggerFor]="postMenu" aria-hidden="true">
+                <mat-icon>more_horiz</mat-icon>
+            </button>
+        </div>
+
+    </mat-card-header>
+
+    <mat-card-content>
+        <h3>{{post.title}}</h3>
+        <p>{{post.body}}</p>
+        <div style="width: 100%; text-align: right;">
+            <span>5</span>
+            <i class="fa-duotone fa-solid fa-comment" style="margin: 0 5px;"></i>
+        </div>
+    </mat-card-content>
+
+    <mat-divider></mat-divider>
+    <mat-card-actions class="post-actions">
+        <button mat-button type="button">
+            <mat-icon>thumb_up</mat-icon> Like
+        </button>
+        <button mat-button type="button">
+            <mat-icon>comment</mat-icon> Comment
+        </button>
+        <button mat-button type="button">
+            <mat-icon>share</mat-icon> Share
+        </button>
+    </mat-card-actions>
+    <mat-divider></mat-divider>
+</mat-card>
+
+<!-- Menu for post -->
+<mat-menu #postMenu="matMenu" [id]="'menu-post-'+post.id">
+    <button mat-menu-item (click)="handleEditClick()">
+        <mat-icon>edit</mat-icon>
+        <span>Edit</span>
+    </button>
+    <button mat-menu-item (click)="handleDeleteClick(post.id)">
+        <mat-icon>delete</mat-icon>
+        <span>Delete</span>
+    </button>
+</mat-menu>

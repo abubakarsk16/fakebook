@@ -15,13 +15,13 @@ export class MenuComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  handleLogoutClick() {
-    this.confirmDialogService
-      .confirmAction('Logout', 'Are you sure you want to logout?')
-      .subscribe((result) => {
-        if (result) {
-          this.authService.logout();
-        }
-      });
+  async handleLogoutClick() {
+    const confirmed = await this.confirmDialogService.confirmAction(
+      'Logout',
+      'Are you sure you want to logout?'
+    );
+    if (confirmed) {
+      this.authService.logout();
+    }
   }
 }

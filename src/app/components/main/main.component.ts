@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { LayoutService } from '../../services/layout.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { User } from 'src/app/interfaces/user.interface';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-main',
@@ -8,7 +11,18 @@ import { LayoutService } from '../../services/layout.service';
 })
 export class MainComponent implements OnInit {
   isHandset$ = this.layoutService.isHandset();
-  constructor(private layoutService: LayoutService) {}
+  isLaptopSmall$ = this.layoutService.isLaptopSmall();
+  isMobile$ = this.layoutService.isMobile();
+  users$ = this.userService.fetchUsers();
 
-  ngOnInit(): void {}
+  loggedInUser!: User;
+  constructor(
+    private layoutService: LayoutService,
+    private authService: AuthService,
+    private userService: UserService
+  ) {}
+
+  ngOnInit(): void {
+    this.loggedInUser = this.authService.getAuthUser();
+  }
 }

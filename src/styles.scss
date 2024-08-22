@@ -12,27 +12,21 @@
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
 $fakebook-social-app-primary: mat.define-palette(mat.$teal-palette);
-$fakebook-social-app-accent: mat.define-palette(
-  mat.$grey-palette,
-  A200,
-  A100,
-  A400
-);
+$fakebook-social-app-accent: mat.define-palette(mat.$grey-palette,
+    A200,
+    A100,
+    A400);
 
 // The warn palette is optional (defaults to red).
 $fakebook-social-app-warn: mat.define-palette(mat.$red-palette);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$fakebook-social-app-theme: mat.define-light-theme(
-  (
-    color: (
-      primary: $fakebook-social-app-primary,
-      accent: $fakebook-social-app-accent,
-      warn: $fakebook-social-app-warn,
-    ),
-  )
-);
+$fakebook-social-app-theme: mat.define-light-theme((color: (primary: $fakebook-social-app-primary,
+        accent: $fakebook-social-app-accent,
+        warn: $fakebook-social-app-warn,
+      ),
+    ));
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
@@ -45,9 +39,11 @@ html,
 body {
   height: 100%;
 }
+
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: rgba(224, 247, 247, 0.2);
 }
 
 a {
@@ -59,12 +55,15 @@ a {
   0% {
     margin-left: 0rem;
   }
+
   25% {
     margin-left: 0.5rem;
   }
+
   75% {
     margin-left: -0.5rem;
   }
+
   100% {
     margin-left: 0rem;
   }
@@ -77,8 +76,10 @@ a {
 // Form cards styles
 .form-card {
   width: 100%;
-  max-width: 400px; /* Default max width */
-  margin: 0 auto; /* Center the form */
+  max-width: 400px;
+  /* Default max width */
+  margin: 0 auto;
+  /* Center the form */
 }
 
 .form-card-button,
@@ -100,20 +101,66 @@ textarea {
 }
 
 .mat-snack-bar-container {
-  &.default-snackbar {
+  &.default {
     background: #323232 !important;
     color: #fff !important;
   }
-  &.success-snackbar {
+
+  &.success {
     background: #4caf50 !important;
     color: #fff !important;
   }
-  &.error-snackbar {
+
+  &.error {
     background: #f44336 !important;
     color: #fff !important;
   }
-  &.warning-snackbar {
+
+  &.warning {
     background: #ff9800 !important;
     color: #fff !important;
   }
+}
+
+.post-card {
+  margin: 30px auto;
+  width: auto;
+  max-width: 450px;
+}
+
+// .post-card-mobile {
+//   margin: 30px 10px;
+//   width: auto;
+// }
+
+.mat-tab-header {
+  border: none;
+}
+
+.mat-drawer-inner-container {
+  overflow: hidden !important;
+}
+
+.mat-drawer-inner-container:hover {
+  overflow: auto !important;
+  scrollbar-width: thin;
+}
+
+.mat-tab-label-active {
+  color: teal;
+}
+
+.mat-progress-spinner svg {
+  height: inherit !important;
+  width: inherit !important;
+}
+
+.mat-button-wrapper {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.mat-button-wrapper span {
+  margin: 0 5px;
 }

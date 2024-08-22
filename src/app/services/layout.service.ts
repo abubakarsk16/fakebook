@@ -13,5 +13,22 @@ export class LayoutService {
     );
   }
 
+  isLaptopSmall(): Observable<boolean> {
+    return this.breakpointObserver
+      .observe([Breakpoints.Handset, '(max-width: 1024px)'])
+      .pipe(
+        map((result) => result.matches),
+        shareReplay()
+      );
+  }
+  isMobile(): Observable<boolean> {
+    return this.breakpointObserver
+      .observe([Breakpoints.XSmall, '(max-width: 425px)'])
+      .pipe(
+        map((result) => result.matches),
+        shareReplay()
+      );
+  }
+
   constructor(private breakpointObserver: BreakpointObserver) {}
 }

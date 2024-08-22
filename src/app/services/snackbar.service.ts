@@ -10,18 +10,18 @@ export class SnackbarService {
 
   showMessage(
     message: string,
-    type: string = 'default-snackbar',
+    type: string = 'default',
     duration: number = 3000
   ): void {
     let icon = '';
     switch (type) {
-      case 'success-snackbar':
+      case 'success':
         icon = 'check_circle';
         break;
-      case 'error-snackbar':
+      case 'error':
         icon = 'error';
         break;
-      case 'warning-snackbar':
+      case 'warning':
         icon = 'warning';
         break;
       default:

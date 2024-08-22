@@ -6,6 +6,7 @@ import { HomeComponent } from './components/home/home.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { MainComponent } from './components/main/main.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { CreatePostComponent } from './components/create-post/create-post.component';
 
 const routes: Routes = [
   {
@@ -15,7 +16,8 @@ const routes: Routes = [
     children: [{ path: '', component: HomeComponent }],
   },
   { path: 'login', component: LoginComponent },
-  { path: 'profile', component: ProfileComponent },
+  { path: 'profile/:userId', component: ProfileComponent },
+  // { path: 'post', component: CreatePostComponent },
   { path: '**', component: NotfoundComponent },
 ];
 
