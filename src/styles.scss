@@ -37,13 +37,15 @@ $fakebook-social-app-theme: mat.define-light-theme((color: (primary: $fakebook-s
 
 html,
 body {
-  height: 100%;
+  height: 100vh;
 }
 
 body {
+  display: block;
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  background-color: rgba(224, 247, 247, 0.2);
+  background-color: rgb(247, 255, 255);
+  // background-color: red;
 }
 
 a {
@@ -137,14 +139,14 @@ textarea {
   border: none;
 }
 
-.mat-drawer-inner-container {
-  overflow: hidden !important;
-}
+// .mat-drawer-inner-container {
+//   overflow: hidden !important;
+// }
 
-.mat-drawer-inner-container:hover {
-  overflow: auto !important;
-  scrollbar-width: thin;
-}
+// .mat-drawer-inner-container:hover {
+//   overflow: auto !important;
+//   scrollbar-width: thin;
+// }
 
 .mat-tab-label-active {
   color: teal;
@@ -155,12 +157,12 @@ textarea {
   width: inherit !important;
 }
 
-.mat-button-wrapper {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
+.spinner-button-label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.mat-button-wrapper span {
-  margin: 0 5px;
+.spinner-button-label span {
+  margin: 0 10px;
 }

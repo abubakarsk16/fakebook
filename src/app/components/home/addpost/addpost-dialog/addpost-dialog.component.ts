@@ -13,6 +13,7 @@ import { Post } from 'src/app/interfaces/post.interface';
 import { AuthService } from 'src/app/services/auth.service';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import { MatDialogRef } from '@angular/material/dialog';
+import { ConfirmService } from 'src/app/services/confirm.service';
 
 @Component({
   selector: 'app-addpost-dialog',
@@ -20,16 +21,17 @@ import { MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./addpost-dialog.component.scss'],
 })
 export class AddpostDialogComponent implements OnInit, OnDestroy {
-  private subscription!: Subscription;
+  loading: boolean = false;
+  subscription!: Subscription;
   newPost!: FormGroup;
   user!: User;
-  @Output() newPostEvent = new EventEmitter<Post>();
 
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
     private postService: PostService,
     private snackbar: SnackbarService,
+    private confirmService: ConfirmService,
     private dialogRef: MatDialogRef<AddpostDialogComponent>
   ) {
     this.user = this.authService.getAuthUser();
@@ -45,26 +47,34 @@ export class AddpostDialogComponent implements OnInit, OnDestroy {
   ngOnInit(): void {}
 
   handleCreatePost(data: Post) {
-    this.subscription = this.postService.createPost(data).subscribe(
-      (response) => {
+    this.loading = true;
+    this.subscription = this.postService.createPost(data).subscribe({
+      next: (response) => {
+        this.loading = false;
         if (response.ok) {
-          this.newPostEvent.emit(data);
-          this.snackbar.showMessage(
-            'Post created successfully',
-            'success-snackbar',
-            3000
-          );
-          this.dialogRef.close(true);
+          this.snackbar.showMessage('Post created successfully', 'success');
+          this.dialogRef.close(data);
         }
       },
-      (error) => {
-        this.snackbar.showMessage(
-          'Failed to create post',
-          'error-snackbar',
-          3000
-        );
+      error: (err) => {
+        this.loading = false;
+        this.snackbar.showMessage('Failed to create post', 'error');
+      },
+    });
+  }
+
+  async handleDialogClose(postForm: FormGroup) {
+    if (postForm.value.title !== '' || postForm.value.body !== '') {
+      const isConfirmed = await this.confirmService.confirmAction(
+        'Unsaved changes',
+        'Changes you have made will not be saved. Are you sure you want to discard post?'
+      );
+      if (isConfirmed) {
+        this.dialogRef.close(null);
       }
-    );
+    } else {
+      this.dialogRef.close(null);
+    }
   }
 
   ngOnDestroy(): void {

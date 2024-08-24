@@ -19,8 +19,10 @@ export class PostService {
     );
   }
 
-  fetchPosts(): Observable<Post[]> {
-    return this.http.get<Post[]>('https://jsonplaceholder.typicode.com/posts');
+  fetchPosts(): Observable<HttpResponse<Post[]>> {
+    return this.http.get<Post[]>('https://jsonplaceholder.typicode.com/posts', {
+      observe: 'response',
+    });
   }
 
   editPost(post: Post) {

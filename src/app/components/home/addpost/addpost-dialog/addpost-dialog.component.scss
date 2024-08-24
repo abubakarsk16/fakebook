@@ -13,6 +13,7 @@
 .dialog-header .dialog-close-btn {
   text-align: center;
 }
+
 .dialog-header .dialog-title {
   margin: 0;
   flex-grow: 1 !important;
@@ -21,4 +22,9 @@
 
 mat-divider {
   margin: 10px 5px !important;
+}
+
+.mat-progress-spinner {
+  height: 20px !important;
+  width: 20px !important;
 }

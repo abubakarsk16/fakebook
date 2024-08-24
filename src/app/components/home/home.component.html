@@ -1,9 +1,9 @@
-<app-addpost (forwardNewPost)="getNewPost($event)"></app-addpost>
-<div class="posts-container" *ngIf="!loading">
-    <app-post *ngFor="let post of posts; trackBy: trackByPostId" [post]="post"
-        (dialogResult)="getEditedPost($event)"></app-post>
+<app-addpost (newPostEvent)="getNewPost($event)"></app-addpost>
+<div class="posts-container" *ngIf="!isLoading">
+    <app-post *ngFor="let post of posts; trackBy: trackByPostId" [post]="post" (dialogResult)="getEditedPost($event)"
+        (deletePostEvent)="removePost($event)"></app-post>
 </div>
-<div *ngIf="loading" class="loader">
+<div *ngIf="isLoading" class="loader">
     <mat-spinner></mat-spinner>
     <span>loading posts...</span>
 </div>

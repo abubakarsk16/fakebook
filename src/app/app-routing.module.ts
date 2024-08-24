@@ -6,7 +6,7 @@ import { HomeComponent } from './components/home/home.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { MainComponent } from './components/main/main.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { CreatePostComponent } from './components/create-post/create-post.component';
+import { UsersComponent } from './components/users/users.component';
 
 const routes: Routes = [
   {
@@ -17,7 +17,7 @@ const routes: Routes = [
   },
   { path: 'login', component: LoginComponent },
   { path: 'profile/:userId', component: ProfileComponent },
-  // { path: 'post', component: CreatePostComponent },
+  { path: 'users', component: UsersComponent },
   { path: '**', component: NotfoundComponent },
 ];
 

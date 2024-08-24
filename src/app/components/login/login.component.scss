@@ -7,3 +7,14 @@
 form {
   transform: translate(0, 50px);
 }
+
+.divider {
+  position: static !important;
+  margin: 30px auto !important;
+  margin-bottom: 5px !important;
+  width: 90% !important;
+}
+
+.mat-card-actions {
+  margin: 0;
+}

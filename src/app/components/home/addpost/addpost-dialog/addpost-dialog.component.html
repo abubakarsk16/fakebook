@@ -1,6 +1,6 @@
 <div class="dialog-header">
     <h2 mat-dialog-title class="dialog-title">Create post</h2>
-    <button mat-icon-button mat-dialog-close class="dialog-close-btn" type="button">
+    <button mat-icon-button class="dialog-close-btn" type="button" (click)="handleDialogClose(newPost)">
         <mat-icon>close</mat-icon>
     </button>
 </div>
@@ -26,8 +26,13 @@
         </mat-form-field>
     </mat-dialog-content>
     <mat-dialog-actions>
-        <button mat-raised-button class="form-card-button" type="submit" color="primary" [disabled]="newPost.invalid">
-            Post
+        <button mat-flat-button class="form-card-button" type="submit" color="primary"
+            [disabled]="newPost.invalid||loading">
+            <div *ngIf="loading" class="spinner-button-label">
+                <mat-spinner></mat-spinner>
+                <span>posting...</span>
+            </div>
+            <span *ngIf="!loading">Post</span>
         </button>
     </mat-dialog-actions>
 </form>

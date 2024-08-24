@@ -26,11 +26,14 @@ export class PostComponent implements OnInit, OnDestroy {
 
   @Input() post!: Post;
   @Output() dialogResult = new EventEmitter<Post>();
+  @Output() deletePostEvent = new EventEmitter<number>();
 
-  userOfPost$!: Observable<User>;
+  userOfPost!: User;
+  loadingUser: boolean = true;
 
   dialogSubscription!: Subscription;
   deleteSubscription!: Subscription;
+  userSubscription!: Subscription;
 
   constructor(
     private userService: UserService,
@@ -41,12 +44,23 @@ export class PostComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.userOfPost$ = this.userService.getUserById(this.post.userId);
+    this.userSubscription = this.userService
+      .getUserById(this.post.userId)
+      .subscribe({
+        next: (res) => {
+          this.loadingUser = false;
+          this.userOfPost = res;
+        },
+        error: (err) => {
+          this.loadingUser = false;
+          this.alert.showMessage('Error while fetching data', 'error');
+        },
+      });
   }
 
   handleEditClick() {
     const dialogRef = this.editDialog.open(EditpostComponent, {
-      data: this.post,
+      data: { post: this.post, user: this.userOfPost },
       width: '500px',
       disableClose: true,
     });
@@ -67,6 +81,7 @@ export class PostComponent implements OnInit, OnDestroy {
       this.deleteSubscription = this.postService.deletePost(postId).subscribe({
         next: (res) => {
           if (res.ok) {
+            this.deletePostEvent.emit(postId);
             this.alert.showMessage('Post deleted successfully', 'success');
           }
         },
@@ -83,6 +98,9 @@ export class PostComponent implements OnInit, OnDestroy {
     }
     if (this.deleteSubscription) {
       this.deleteSubscription.unsubscribe();
+    }
+    if (this.userSubscription) {
+      this.userSubscription.unsubscribe();
     }
   }
 }

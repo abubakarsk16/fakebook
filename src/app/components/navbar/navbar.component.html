@@ -1,0 +1,29 @@
+<mat-toolbar class="toolbar">
+    <button *ngIf="isLaptopSmall$ | async" mat-icon-button aria-label="Sidenav toggle button" (click)="openLeftMenu()">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <a href="/" *ngIf="!(isHandset$ | async)">Fakebook</a>
+    <mat-tab-group *ngIf="!(isMobile$ | async)" animationDuration="0ms" color="primary" class="nav-tabs">
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <mat-icon matTooltip="Home">home</mat-icon>
+            </ng-template>
+        </mat-tab>
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <mat-icon matTooltip="Friends">people</mat-icon>
+            </ng-template>
+        </mat-tab>
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <mat-icon matTooltip="Videos">live_tv</mat-icon>
+            </ng-template>
+        </mat-tab>
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <mat-icon matTooltip="Chats" matBadge="6" matBadgeColor="warn">chat_bubble</mat-icon>
+            </ng-template>
+        </mat-tab>
+    </mat-tab-group>
+    <app-menu></app-menu>
+</mat-toolbar>

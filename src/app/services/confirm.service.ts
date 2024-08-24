@@ -14,7 +14,6 @@ export class ConfirmService {
       width: '400px',
       data: { title, description },
     });
-    const result = await lastValueFrom(dialogRef.afterClosed());
-    return result;
+    return lastValueFrom(dialogRef.afterClosed());
   }
 }

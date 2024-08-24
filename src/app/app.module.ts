@@ -43,8 +43,13 @@ import { ResponseInterceptor } from './interceptors/response.interceptor';
 import { MatBadgeModule } from '@angular/material/badge';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { CreatePostComponent } from './components/create-post/create-post.component';
 import { EditpostComponent } from './components/home/editpost/editpost.component';
+import { LoadingPlaceholderComponent } from './components/loading-placeholder/loading-placeholder.component';
+import { UsersComponent } from './components/users/users.component';
+import { MatTableModule } from '@angular/material/table';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { SideNavsComponent } from './components/sidenavs/sidenavs.component';
+import { TestComponent } from './components/test/test.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -60,8 +65,12 @@ import { EditpostComponent } from './components/home/editpost/editpost.component
     ConfirmComponent,
     PostComponent,
     CommentComponent,
-    CreatePostComponent,
     EditpostComponent,
+    LoadingPlaceholderComponent,
+    UsersComponent,
+    NavbarComponent,
+    SideNavsComponent,
+    TestComponent,
   ],
   imports: [
     BrowserModule,
@@ -92,6 +101,7 @@ import { EditpostComponent } from './components/home/editpost/editpost.component
     MatBadgeModule,
     NgScrollbarModule,
     MatTooltipModule,
+    MatTableModule,
   ],
   providers: [
     // { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true },

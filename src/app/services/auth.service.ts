@@ -1,26 +1,19 @@
 import { Inject, Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { LOCAL_STORAGE_TOKEN } from '../localstorage.token';
 import { SESSION_STORAGE_TOKEN } from '../sessionstorage.token';
-import { User } from '../interfaces/user.interface';
+import { SnackbarService } from './snackbar.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   constructor(
-    private http: HttpClient,
     private router: Router,
+    private alert: SnackbarService,
     @Inject(LOCAL_STORAGE_TOKEN) private localStorage: Storage,
     @Inject(SESSION_STORAGE_TOKEN) private sessionStorage: Storage
   ) {}
-  fetchUsers(): Observable<any> {
-    return this.http.get<User[]>('https://jsonplaceholder.typicode.com/users', {
-      observe: 'response',
-    });
-  }
 
   isAuthenticated(): boolean {
     if (
@@ -41,11 +34,10 @@ export class AuthService {
       try {
         return JSON.parse(token);
       } catch (e) {
-        console.error('Error parsing token:', e);
+        this.alert.showMessage('Somthing happened wrong', 'error');
         return null;
       }
     }
-
     return null;
   }
 

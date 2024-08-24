@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Post } from 'src/app/interfaces/post.interface';
 import { PostService } from 'src/app/services/post.service';
+import { SnackbarService } from 'src/app/services/snackbar.service';
 
 @Component({
   selector: 'app-home',
@@ -10,17 +11,22 @@ import { PostService } from 'src/app/services/post.service';
 })
 export class HomeComponent implements OnInit, OnDestroy {
   posts: Post[] = [];
-  loading: boolean = true;
-  subscription: Subscription;
-  constructor(private postService: PostService) {
+  isLoading: boolean = true;
+  subscription!: Subscription;
+  constructor(
+    private postService: PostService,
+    private alert: SnackbarService
+  ) {
     this.subscription = this.postService.fetchPosts().subscribe({
       next: (res) => {
-        this.loading = false;
-        this.posts = res;
+        this.isLoading = false;
+        if (res.ok) {
+          this.posts = res.body!;
+        }
       },
       error: (err) => {
-        this.loading = false;
-        console.log(err);
+        this.isLoading = false;
+        this.alert.showMessage('Error while fetching posts', 'error');
       },
     });
   }
@@ -37,6 +43,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   getEditedPost(data: Post) {
     this.posts = this.posts.map((post) => (post.id !== data.id ? post : data));
+  }
+
+  removePost(postId: number) {
+    this.posts = this.posts.filter((post) => post.id !== postId);
   }
 
   ngOnDestroy(): void {

@@ -17,7 +17,6 @@ import { UserService } from 'src/app/services/user.service';
 export class EditpostComponent implements OnInit {
   loading: boolean = false;
   editedPost: FormGroup;
-  user$: Observable<User>;
   subscription!: Subscription;
   @Output() editPostEvent = new EventEmitter<Post>();
 
@@ -28,17 +27,16 @@ export class EditpostComponent implements OnInit {
     private dialogRef: MatDialogRef<EditpostComponent>,
     private postService: PostService,
     private alert: SnackbarService,
-    @Inject(MAT_DIALOG_DATA) public data: Post
+    @Inject(MAT_DIALOG_DATA) public data: { post: Post; user: User }
   ) {
-    this.user$ = this.userService.getUserById(this.data.userId);
     this.editedPost = this.fb.group({
-      userId: [this.data.userId],
-      id: [this.data.id],
+      userId: [this.data.post.userId],
+      id: [this.data.post.id],
       title: [
-        this.data.title,
+        this.data.post.title,
         [Validators.required, Validators.maxLength(100)],
       ],
-      body: [this.data.body],
+      body: [this.data.post.body],
     });
   }
 
@@ -64,8 +62,8 @@ export class EditpostComponent implements OnInit {
 
   async handleDialogClose(editedPost: Post) {
     if (
-      editedPost.title !== this.data.title ||
-      editedPost.body !== this.data.body
+      editedPost.title !== this.data.post.title ||
+      editedPost.body !== this.data.post.body
     ) {
       const confirmed = await this.confirmService.confirmAction(
         'Unsaved changes',

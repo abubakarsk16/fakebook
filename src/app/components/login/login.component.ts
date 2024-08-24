@@ -1,32 +1,37 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from '../../interfaces/user.interface';
 import { LOCAL_STORAGE_TOKEN } from '../../localstorage.token';
 import { SESSION_STORAGE_TOKEN } from '../../sessionstorage.token';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth.service';
+import { SnackbarService } from 'src/app/services/snackbar.service';
+import { Subscription } from 'rxjs';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
   loginForm!: FormGroup;
 
-  hide: boolean = true; //password toggle flag
+  pswHide: boolean = true; //password toggle flag
 
   isLoading: boolean = false;
 
   userMatched!: boolean;
-  pswMatched!: boolean;
+  pswMatched!: boolean; //flags for auth
+
+  subscription!: Subscription;
 
   constructor(
-    private loginService: AuthService,
+    private UserService: UserService,
     private fb: FormBuilder,
+    private router: Router,
+    private alert: SnackbarService,
     @Inject(LOCAL_STORAGE_TOKEN) private localStorage: Storage,
-    @Inject(SESSION_STORAGE_TOKEN) private sessionStorage: Storage,
-    private router: Router
+    @Inject(SESSION_STORAGE_TOKEN) private sessionStorage: Storage
   ) {
     this.loginForm = this.fb.group({
       username: ['Bret', Validators.required],
@@ -70,11 +75,11 @@ export class LoginComponent implements OnInit {
 
   handleLogin() {
     this.isLoading = true;
-    this.loginService.fetchUsers().subscribe(
-      (response) => {
+    this.subscription = this.UserService.fetchUsers().subscribe({
+      next: (response) => {
         this.isLoading = false;
         if (response.ok) {
-          const loggedInUser = this.matchCredentials(response.body);
+          const loggedInUser = this.matchCredentials(response.body!);
           if (!this.userMatched) {
             this.loginForm.get('username')?.setErrors({ incorrect: true });
           } else if (!this.pswMatched) {
@@ -84,9 +89,16 @@ export class LoginComponent implements OnInit {
           }
         }
       },
-      (error) => {
+      error: (err) => {
         this.isLoading = false;
-      }
-    );
+        this.alert.showMessage('Some error occurred during login!', 'error');
+      },
+    });
+  }
+
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 }

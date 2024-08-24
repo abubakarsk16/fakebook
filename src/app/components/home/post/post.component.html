@@ -2,7 +2,9 @@
     <mat-card-header>
         <div mat-card-avatar class="user-avatar"></div>
         <mat-card-title>
-            <a [routerLink]="'/profile/'+post.userId">{{(userOfPost$ | async)?.name}}</a>
+            <a *ngIf="!loadingUser" [routerLink]="'/profile/'+post.userId">{{userOfPost.name}}</a>
+            <app-loading-placeholder *ngIf="loadingUser" height="20px" width="150px"
+                rounded="10px"></app-loading-placeholder>
         </mat-card-title>
         <mat-card-subtitle>{{postDate | date}}</mat-card-subtitle>
         <div class="post-menu-button">
