@@ -1,77 +1,15 @@
-<!-- <app-navbar (openMenuEvent)="leftMenu.openLeft()"></app-navbar>
-<app-sidenavs #leftMenu>
-    <router-outlet></router-outlet>
-</app-sidenavs> -->
-
+<app-navbar [leftSidenav]="leftSidenav"></app-navbar>
 <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav *ngIf="isHandset$|async" #leftDrawer [attr.role]="'dialog'" [mode]="'over'" [opened]="false"
+        class="sidenav-scroll">
+        <app-sidenav-content></app-sidenav-content>
+    </mat-sidenav>
     <mat-sidenav-content>
         <div class="sidenav-content">
-            <div class="sidenav-inner-content">
-                <div class="main">
-                    <mat-sidenav *ngIf="isHandset$|async" #leftDrawer class="sidenav" fixedInViewport
-                        [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-                        [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="isHandset$|async">
-                        <mat-toolbar>Menu left</mat-toolbar>
-                        <mat-nav-list>
-                            <a mat-list-item href="#">Link 1</a>
-                            <a mat-list-item href="#">Link 2</a>
-                            <a mat-list-item href="#">Link 3</a>
-                        </mat-nav-list>
-                    </mat-sidenav>
-                    <div class="sidenav" *ngIf="!(isHandset$ | async)" style="left: 0;">
-                        <div class="sidenav-content">
-                            <mat-nav-list>
-                                <a mat-list-item href="#">Link 1</a>
-                                <a mat-list-item href="#">Link 2</a>
-                                <a mat-list-item href="#">Link 3</a>
-                                <a mat-list-item href="#">Link 1</a>
-                                <a mat-list-item href="#">Link 2</a>
-                                <a mat-list-item href="#">Link 3</a>
-                                <a mat-list-item href="#">Link 1</a>
-                                <a mat-list-item href="#">Link 2</a>
-                                <a mat-list-item href="#">Link 3</a>
-                                <a mat-list-item href="#">Link 1</a>
-                                <a mat-list-item href="#">Link 2</a>
-                                <a mat-list-item href="#">Link 3</a>
-                                <a mat-list-item href="#">Link 1</a>
-                                <a mat-list-item href="#">Link 2</a>
-                                <a mat-list-item href="#">Link 3</a>
-                                <a mat-list-item href="#">Link 1</a>
-                                <a mat-list-item href="#">Link 2</a>
-                                <a mat-list-item href="#">Link 3</a>
-                                <a mat-list-item href="#">Link 1</a>
-                                <a mat-list-item href="#">Link 2</a>
-                                <a mat-list-item href="#">Link 3</a>
-                                <a mat-list-item href="#">Link 1</a>
-                                <a mat-list-item href="#">Link 2</a>
-                                <a mat-list-item href="#">Link 3</a>
-                                <a mat-list-item href="#">Link 1</a>
-                                <a mat-list-item href="#">Link 2</a>
-                                <a mat-list-item href="#">Link 3</a>
-                            </mat-nav-list>
-                        </div>
-                    </div>
-                    <div class="component-view">
-                        <router-outlet></router-outlet>
-                    </div>
-                    <div class="sidenav" *ngIf="!(isHandset$|async)" style="right: 0;">
-                        <div class="sidenav-content">
-                            <mat-nav-list>
-                                <a mat-list-item href="#">Link 1</a>
-                                <a mat-list-item href="#">Link 2</a>
-                                <a mat-list-item href="#">Link 3</a>
-                                <a mat-list-item href="#">Link 1</a>
-                                <a mat-list-item href="#">Link 2</a>
-                            </mat-nav-list>
-                        </div>
-                    </div>
-                </div>
-                <div class="footer">
-                    <mat-toolbar color="primary">
-                        <span>Footer</span>
-                    </mat-toolbar>
-                </div>
+            <div class="main">
+                <router-outlet></router-outlet>
             </div>
+            <app-footer></app-footer>
         </div>
     </mat-sidenav-content>
 </mat-sidenav-container>

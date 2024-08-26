@@ -130,26 +130,19 @@ textarea {
   max-width: 450px;
 }
 
-// .post-card-mobile {
-//   margin: 30px 10px;
-//   width: auto;
-// }
-
 .mat-tab-header {
   border: none;
 }
 
-// .mat-drawer-inner-container {
-//   overflow: hidden !important;
-// }
-
-// .mat-drawer-inner-container:hover {
-//   overflow: auto !important;
-//   scrollbar-width: thin;
-// }
-
 .mat-tab-label-active {
   color: teal;
+}
+
+.mat-tab-label {
+  height: 56px !important;
+  min-width: 130px !important;
+  padding: 0 !important;
+  opacity: 1 !important;
 }
 
 .mat-progress-spinner svg {
@@ -165,4 +158,28 @@ textarea {
 
 .spinner-button-label span {
   margin: 0 10px;
+}
+
+*::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+.mat-drawer-inner-container::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.26);
+  border-radius: 30px;
+  visibility: hidden;
+}
+
+*:hover::-webkit-scrollbar-thumb {
+  visibility: visible;
+}
+
+.mat-ink-bar {
+  visibility: hidden !important;
 }

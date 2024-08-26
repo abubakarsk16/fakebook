@@ -1,0 +1,43 @@
+.comment-container {
+    display: flex;
+    flex-direction: column;
+    padding: 7px 0;
+    width: 100%;
+
+    .comment {
+        display: flex;
+        align-items: flex-start;
+
+        .avatar {
+            background-image: url('../../../../../assets/images/man.svg');
+            background-size: cover;
+            height: 30px;
+            width: 30px;
+        }
+
+        .comment-bubble {
+            background-color: rgba(0, 0, 0, 0.06);
+            border-radius: 20px;
+            padding: 0.75em;
+            margin: 0 5px;
+            width: auto;
+            max-width: 100%;
+        }
+
+        .menu-button {
+            visibility: hidden;
+        }
+    }
+
+    .comment-details {
+        margin-left: 40px;
+        font-size: 11px;
+        color: gray;
+    }
+}
+
+.comment:hover {
+    .menu-button {
+        visibility: visible !important;
+    }
+}

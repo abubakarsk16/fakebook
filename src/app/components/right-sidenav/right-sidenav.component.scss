@@ -1,0 +1,17 @@
+.right-sidenav {
+    width: 320px;
+    height: calc(100vh - 56px);
+    overflow-y: auto;
+    position: sticky;
+    top: 0;
+    right: 0;
+    background-color: transparent;
+}
+
+.mat-nav-list {
+    padding: 5px 10px;
+}
+
+.mat-list-item {
+    border-radius: 10px;
+}

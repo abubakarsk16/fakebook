@@ -1,29 +1,56 @@
-<mat-toolbar class="toolbar">
-    <button *ngIf="isLaptopSmall$ | async" mat-icon-button aria-label="Sidenav toggle button" (click)="openLeftMenu()">
-        <mat-icon>menu</mat-icon>
+<!-- Main menu -->
+<mat-menu #menu="matMenu">
+    <button mat-menu-item routerLink="/profile">
+        <mat-icon>person</mat-icon>
+        <span>Profile</span>
     </button>
-    <a href="/" *ngIf="!(isHandset$ | async)">Fakebook</a>
-    <mat-tab-group *ngIf="!(isMobile$ | async)" animationDuration="0ms" color="primary" class="nav-tabs">
-        <mat-tab>
-            <ng-template mat-tab-label>
-                <mat-icon matTooltip="Home">home</mat-icon>
-            </ng-template>
-        </mat-tab>
-        <mat-tab>
-            <ng-template mat-tab-label>
-                <mat-icon matTooltip="Friends">people</mat-icon>
-            </ng-template>
-        </mat-tab>
-        <mat-tab>
-            <ng-template mat-tab-label>
-                <mat-icon matTooltip="Videos">live_tv</mat-icon>
-            </ng-template>
-        </mat-tab>
-        <mat-tab>
-            <ng-template mat-tab-label>
-                <mat-icon matTooltip="Chats" matBadge="6" matBadgeColor="warn">chat_bubble</mat-icon>
-            </ng-template>
-        </mat-tab>
-    </mat-tab-group>
-    <app-menu></app-menu>
+    <button mat-menu-item>
+        <mat-icon>settings</mat-icon>
+        <span>Settings</span>
+    </button>
+    <button mat-menu-item aria-hidden="false" (click)="handleLogoutClick()">
+        <mat-icon>logout</mat-icon>
+        <span>Logout</span>
+    </button>
+</mat-menu>
+
+<mat-toolbar class="toolbar">
+    <nav>
+        <div class="nav-content-left">
+            <button *ngIf="isHandset$ | async" mat-icon-button aria-label="Sidenav toggle button"
+                (click)="toggleSidenav()" style="background-color: rgba(0,0,0,0.12);">
+                <mat-icon>menu</mat-icon>
+            </button>
+            <a href="/" *ngIf="!(isHandset$ | async)">Fakebook</a>
+        </div>
+        <div mat-tab-nav-bar *ngIf="!(isMobile$ | async)" class="nav-content-center">
+            <a mat-tab-link routerLink="/" routerLinkActive #rla1="routerLinkActive" [active]="rla1.isActive"
+                matTooltip="Home">
+                <mat-icon>home</mat-icon>
+            </a>
+            <a mat-tab-link routerLink="#" routerLinkActive #rla2="routerLinkActive" [active]="rla2.isActive"
+                matTooltip="Groups" disabled>
+                <mat-icon><i class="fa-solid fa-people-group"></i></mat-icon>
+            </a>
+            <a mat-tab-link routerLink="#" routerLinkActive #rla3="routerLinkActive" [active]="rla3.isActive"
+                matTooltip="Reels" disabled>
+                <mat-icon>live_tv</mat-icon>
+            </a>
+            <a mat-tab-link routerLink="#" routerLinkActive #rla4="routerLinkActive" [active]="rla4.isActive"
+                matTooltip="Marketplace" disabled>
+                <mat-icon><i class="fa-solid fa-store"></i></mat-icon>
+            </a>
+        </div>
+        <div class="nav-content-right">
+            <button mat-icon-button type="button" matBadge="6" matBadgeColor="warn" matBadgeSize="small"
+                matTooltip="Chats" style="background-color: rgba(0,0,0,0.12); margin: 0 10px;">
+                <mat-icon style="margin-bottom: 6px;">
+                    <i class="fa-brands fa-facebook-messenger"></i>
+                </mat-icon>
+            </button>
+            <button mat-icon-button [matMenuTriggerFor]="menu" matTooltip="Menu">
+                <img mat-card-avatar src="../../../../assets/images/man.svg" alt="avatar">
+            </button>
+        </div>
+    </nav>
 </mat-toolbar>

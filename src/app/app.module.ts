@@ -29,7 +29,6 @@ import { AddpostComponent } from './components/home/addpost/addpost.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AddpostDialogComponent } from './components/home/addpost/addpost-dialog/addpost-dialog.component';
 import { MatMenuModule } from '@angular/material/menu';
-import { MenuComponent } from './components/main/menu/menu.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -37,7 +36,6 @@ import { SnackbarComponent } from './components/snackbar/snackbar.component';
 import { ConfirmComponent } from './components/confirm/confirm.component';
 import { PostComponent } from './components/home/post/post.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { CommentComponent } from './components/home/comment/comment.component';
 import { RequestInterceptor } from './interceptors/request.interceptor';
 import { ResponseInterceptor } from './interceptors/response.interceptor';
 import { MatBadgeModule } from '@angular/material/badge';
@@ -48,8 +46,14 @@ import { LoadingPlaceholderComponent } from './components/loading-placeholder/lo
 import { UsersComponent } from './components/users/users.component';
 import { MatTableModule } from '@angular/material/table';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { SideNavsComponent } from './components/sidenavs/sidenavs.component';
 import { TestComponent } from './components/test/test.component';
+import { LeftSidenavComponent } from './components/left-sidenav/left-sidenav.component';
+import { RightSidenavComponent } from './components/right-sidenav/right-sidenav.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { SidenavContentComponent } from './components/sidenav-content/sidenav-content.component';
+import { CommentComponent } from './components/home/post/comment/comment.component';
+import { CommentFormComponent } from './components/home/post/comment-form/comment-form.component';
+import { CommentSectionComponent } from './components/home/post/comment-section/comment-section.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -60,17 +64,21 @@ import { TestComponent } from './components/test/test.component';
     MainComponent,
     AddpostComponent,
     AddpostDialogComponent,
-    MenuComponent,
     ProfileComponent,
     ConfirmComponent,
     PostComponent,
-    CommentComponent,
     EditpostComponent,
     LoadingPlaceholderComponent,
     UsersComponent,
     NavbarComponent,
-    SideNavsComponent,
     TestComponent,
+    LeftSidenavComponent,
+    RightSidenavComponent,
+    FooterComponent,
+    SidenavContentComponent,
+    CommentComponent,
+    CommentFormComponent,
+    CommentSectionComponent,
   ],
   imports: [
     BrowserModule,

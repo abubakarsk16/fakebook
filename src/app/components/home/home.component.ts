@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Post } from 'src/app/interfaces/post.interface';
+import { LayoutService } from 'src/app/services/layout.service';
 import { PostService } from 'src/app/services/post.service';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 
@@ -13,9 +14,13 @@ export class HomeComponent implements OnInit, OnDestroy {
   posts: Post[] = [];
   isLoading: boolean = true;
   subscription!: Subscription;
+
+  isSmallLaptop$ = this.layoutService.isLaptopSmall();
+  isHandset$ = this.layoutService.isHandset();
   constructor(
     private postService: PostService,
-    private alert: SnackbarService
+    private alert: SnackbarService,
+    private layoutService: LayoutService
   ) {
     this.subscription = this.postService.fetchPosts().subscribe({
       next: (res) => {

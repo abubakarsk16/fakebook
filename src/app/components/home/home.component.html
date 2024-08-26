@@ -1,9 +1,15 @@
-<app-addpost (newPostEvent)="getNewPost($event)"></app-addpost>
-<div class="posts-container" *ngIf="!isLoading">
-    <app-post *ngFor="let post of posts; trackBy: trackByPostId" [post]="post" (dialogResult)="getEditedPost($event)"
-        (deletePostEvent)="removePost($event)"></app-post>
-</div>
-<div *ngIf="isLoading" class="loader">
-    <mat-spinner></mat-spinner>
-    <span>loading posts...</span>
+<div class="home-container">
+    <app-left-sidenav *ngIf="!(isHandset$|async)"></app-left-sidenav>
+    <div class="home-content">
+        <app-addpost (newPostEvent)="getNewPost($event)"></app-addpost>
+        <div class="posts-container" *ngIf="!isLoading">
+            <app-post *ngFor="let post of posts; trackBy: trackByPostId" [post]="post"
+                (dialogResult)="getEditedPost($event)" (deletePostEvent)="removePost($event)"></app-post>
+        </div>
+        <div *ngIf="isLoading" class="loader">
+            <mat-spinner></mat-spinner>
+            <span>loading posts...</span>
+        </div>
+    </div>
+    <app-right-sidenav *ngIf="!(isSmallLaptop$|async)"></app-right-sidenav>
 </div>

@@ -13,11 +13,13 @@ const routes: Routes = [
     path: '',
     component: MainComponent,
     canActivate: [AuthGuard],
-    children: [{ path: '', component: HomeComponent }],
+    children: [
+      { path: '', component: HomeComponent },
+      { path: 'profile/:userId', component: ProfileComponent },
+      { path: 'users', component: UsersComponent },
+    ],
   },
   { path: 'login', component: LoginComponent },
-  { path: 'profile/:userId', component: ProfileComponent },
-  { path: 'users', component: UsersComponent },
   { path: '**', component: NotfoundComponent },
 ];
 

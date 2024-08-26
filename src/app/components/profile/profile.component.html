@@ -1,2 +1,80 @@
-<p>profile works!</p>
-<app-loading-placeholder height="100px" width="300px"></app-loading-placeholder>
+<mat-card class="post-card">
+    <mat-card-header>
+        <div mat-card-avatar class="user-avatar"></div>
+        <mat-card-title>
+            <a [routerLink]="'/'">{{'User Name'}}</a>
+        </mat-card-title>
+        <mat-card-subtitle>{{'25 Aug 2024'}}</mat-card-subtitle>
+        <div class="post-menu-button">
+            <button mat-icon-button matTooltip="Actions" matTooltipPosition="right" type="button"
+                [matMenuTriggerFor]="postMenu" aria-hidden="true">
+                <mat-icon>more_horiz</mat-icon>
+            </button>
+        </div>
+
+    </mat-card-header>
+
+    <mat-card-content>
+        <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus deleniti</h3>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo exercitationem dignissimos voluptatum? Libero
+            consectetur magnam porro sapiente ipsum. Dignissimos corporis perferendis tempore beatae iste. Esse
+            veritatis ipsum officiis facilis repellat?</p>
+        <div style="width: 100%; text-align: right;">
+            <span>5</span>
+            <i class="fa-duotone fa-solid fa-comment" style="margin: 0 5px;"></i>
+        </div>
+    </mat-card-content>
+
+    <mat-divider></mat-divider>
+    <mat-card-actions class="post-actions">
+        <button mat-button type="button">
+            <mat-icon>thumb_up</mat-icon> Like
+        </button>
+        <button mat-button type="button" (click)="commentBox.focus()">
+            <mat-icon>comment</mat-icon> Comment
+        </button>
+        <button mat-button type="button">
+            <mat-icon>share</mat-icon> Share
+        </button>
+    </mat-card-actions>
+    <mat-divider></mat-divider>
+    <mat-card-content class="comment-section">
+        <div class="available-comments" #commentSection>
+            <app-comment *ngIf="!isLoading&&!showAll" [comment]="comments[0]"></app-comment>
+            <ng-container *ngIf="!isLoading&&showAll">
+                <app-comment *ngFor="let comment of comments" [comment]="comment"></app-comment>
+            </ng-container>
+            <button mat-button type="button" class="comments-toggle-button"
+                (click)="toggleCommentsShow()">{{showAll?'Show less...':'Show more...'}}</button>
+        </div>
+        <form [formGroup]="newComment">
+            <mat-form-field appearance="fill" class="comment-field">
+                <textarea #commentBox matInput formControlName="body" placeholder="Write a comment..."
+                    (focus)="handleFieldFocus(commentActions)" (keydown)="handleKeyDown($event, commentBox)"></textarea>
+                <div #commentActions class="comment-actions-container">
+                    <div class="action-icons">
+                        <mat-icon><i class="fa-regular fa-face-grin"></i></mat-icon>
+                        <mat-icon><i class="fa-regular fa-camera"></i></mat-icon>
+                        <mat-icon><i class="fa-regular fa-gif"></i></mat-icon>
+                    </div>
+                    <button mat-icon-button matSuffix type="button" color="primary"
+                        [disabled]="commentBox.value.trim()===''" (click)="postComment(newComment)">
+                        <mat-icon>send</mat-icon>
+                    </button>
+                </div>
+            </mat-form-field>
+        </form>
+    </mat-card-content>
+</mat-card>
+
+<!-- Menu for post -->
+<mat-menu #postMenu="matMenu">
+    <button mat-menu-item>
+        <mat-icon>edit</mat-icon>
+        <span>Edit</span>
+    </button>
+    <button mat-menu-item>
+        <mat-icon>delete</mat-icon>
+        <span>Delete</span>
+    </button>
+</mat-menu>

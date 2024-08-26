@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatSidenav } from '@angular/material/sidenav';
 import { LayoutService } from 'src/app/services/layout.service';
 
 @Component({
@@ -8,6 +9,8 @@ import { LayoutService } from 'src/app/services/layout.service';
 })
 export class MainComponent implements OnInit {
   isHandset$ = this.layoutService.isHandset();
+  @ViewChild('leftDrawer') leftSidenav!: MatSidenav;
+
   constructor(private layoutService: LayoutService) {}
 
   ngOnInit(): void {}

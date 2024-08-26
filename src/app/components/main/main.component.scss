@@ -1,42 +1,19 @@
 .mat-sidenav-container {
     top: 56px;
     height: calc(100vh - 56px);
+    background-color: transparent;
 }
 
-.main {
-    display: flex;
+.sidenav-content {
+    height: auto;
     min-height: 100%;
 }
 
-.sidenav {
+.mat-sidenav {
     width: 320px;
-    height: calc(100vh - 56px);
-    overflow-y: auto;
-    background-color: white;
-    position: sticky;
-    top: 0;
-    transition: all 1;
 }
 
-.sidenav::-webkit-scrollbar {
-    width: 5px;
-    height: 5px;
-}
-
-.sidenav::-webkit-scrollbar-thumb {
-    background-color: gray;
-    border-radius: 30px;
-    visibility: hidden;
-}
-
-.sidenav:hover::-webkit-scrollbar-thumb {
-    visibility: visible;
-}
-
-.sidenav::-webkit-scrollbar-track {
-    background-color: rgba(0, 0, 0, 0.10);
-}
-
-.component-view {
-    flex: 1;
+.main {
+    height: auto;
+    min-height: calc(100vh - 112px);
 }
