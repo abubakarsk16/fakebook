@@ -1,1 +1,18 @@
-<p>comment-form works!</p>
+<form [formGroup]="newComment">
+    <mat-form-field appearance="fill" class="comment-field">
+        <textarea #commentBox matInput formControlName="body" placeholder="Write a comment..." name="body"
+            id="comment-body" (focus)="handleFieldFocus(commentActions)"
+            (keydown)="handleKeyDown($event, commentBox)"></textarea>
+        <div #commentActions class="comment-actions-container">
+            <div class="action-icons">
+                <mat-icon><i class="fa-regular fa-face-grin"></i></mat-icon>
+                <mat-icon><i class="fa-regular fa-camera"></i></mat-icon>
+                <mat-icon><i class="fa-regular fa-gif"></i></mat-icon>
+            </div>
+            <button mat-icon-button matSuffix type="button" color="primary" [disabled]="commentBox.value.trim()===''"
+                (click)="postComment(newComment)">
+                <mat-icon>send</mat-icon>
+            </button>
+        </div>
+    </mat-form-field>
+</form>

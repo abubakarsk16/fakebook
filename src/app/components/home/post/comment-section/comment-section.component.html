@@ -1,1 +1,19 @@
-<p>comment-section works!</p>
+<div class="available-comments">
+    <!-- render only one comment initially -->
+    <app-comment *ngIf="!(loadingComments||showAll)" [comment]="comments[0]"></app-comment>
+
+    <!-- show all comments on button click -->
+    <ng-container *ngIf="!(loadingComments)&&showAll">
+        <app-comment *ngFor="let comment of comments; trackBy: trackById" [comment]="comment"></app-comment>
+    </ng-container>
+
+    <!-- loading placeholder -->
+    <div *ngIf="loadingComments" class="loading-placeholder-container">
+        <app-loading-placeholder height="30px" width="30px" rounded="50%"></app-loading-placeholder>
+        <app-loading-placeholder height="100px" width="300px" rounded="20px"></app-loading-placeholder>
+    </div>
+
+    <!-- button to toggle all comments show -->
+    <button *ngIf="!loadingComments" mat-button type="button" class="comments-toggle-button"
+        (click)="toggleCommentsShow()">{{showAll?'Showless...':'Show more...'}}</button>
+</div>

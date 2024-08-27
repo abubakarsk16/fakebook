@@ -2,8 +2,8 @@
     <div class="comment">
         <div mat-card-avatar class="avatar"></div>
         <div class="comment-bubble">
-            <span><strong>User's name</strong></span>
-            <p>{{comment.body}}</p>
+            <span><strong>{{comment.name}}</strong></span>
+            <p [innerText]="comment.body"></p>
         </div>
         <button mat-icon-button matTooltip="Actions" matTooltipPosition="right" type="button" aria-hidden="true"
             class="menu-button" [matMenuTriggerFor]="commentMenu">

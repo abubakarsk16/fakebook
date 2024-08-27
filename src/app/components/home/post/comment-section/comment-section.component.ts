@@ -1,15 +1,74 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Comment } from 'src/app/interfaces/comment.interface';
+import { CommentService } from 'src/app/services/comment.service';
+import { SnackbarService } from 'src/app/services/snackbar.service';
 
 @Component({
   selector: 'app-comment-section',
   templateUrl: './comment-section.component.html',
-  styleUrls: ['./comment-section.component.scss']
+  styleUrls: ['./comment-section.component.scss'],
 })
-export class CommentSectionComponent implements OnInit {
+export class CommentSectionComponent implements OnInit, OnChanges, OnDestroy {
+  showAll: boolean = false;
+  loadingComments: boolean = true;
+  comments: Comment[] = [];
 
-  constructor() { }
+  @Input() postId!: number;
+  @Input() newComment!: Comment;
+  @Output() commentCountEvent = new EventEmitter<number>();
 
-  ngOnInit(): void {
+  fetchCmntsSubs!: Subscription;
+
+  constructor(
+    private commentService: CommentService,
+    private alert: SnackbarService
+  ) {}
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['newComment']) {
+      this.comments = [this.newComment, ...this.comments];
+      this.commentCountEvent.emit(this.comments.length);
+    }
   }
 
+  ngOnInit(): void {
+    this.fetchCmntsSubs = this.commentService
+      .fetchComments(this.postId)
+      .subscribe({
+        next: (res) => {
+          this.loadingComments = false;
+          if (res.ok) {
+            this.comments = res.body!;
+            this.commentCountEvent.emit(res.body!.length);
+          }
+        },
+        error: (err) => {
+          this.loadingComments = false;
+          this.alert.showMessage('Error while fetching comments', 'error');
+        },
+      });
+  }
+
+  toggleCommentsShow() {
+    this.showAll = !this.showAll;
+  }
+  trackById(index: number, comment: Comment) {
+    return comment.id;
+  }
+
+  ngOnDestroy(): void {
+    if (this.fetchCmntsSubs) {
+      this.fetchCmntsSubs.unsubscribe();
+    }
+  }
 }

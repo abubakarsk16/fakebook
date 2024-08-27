@@ -21,7 +21,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     private postService: PostService,
     private alert: SnackbarService,
     private layoutService: LayoutService
-  ) {
+  ) {}
+
+  ngOnInit(): void {
     this.subscription = this.postService.fetchPosts().subscribe({
       next: (res) => {
         this.isLoading = false;
@@ -35,8 +37,6 @@ export class HomeComponent implements OnInit, OnDestroy {
       },
     });
   }
-
-  ngOnInit(): void {}
 
   trackByPostId(index: number, post: Post): number {
     return post.id;

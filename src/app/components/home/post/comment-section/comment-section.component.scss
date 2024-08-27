@@ -1,0 +1,18 @@
+.available-comments {
+    height: auto;
+    max-height: 300px;
+    overflow-y: auto;
+
+    .comments-toggle-button {
+        margin-left: 24px;
+    }
+}
+
+.loading-placeholder-container {
+    display: flex;
+    align-items: flex-start;
+
+    :nth-child(2) {
+        margin: 0 5px;
+    }
+}

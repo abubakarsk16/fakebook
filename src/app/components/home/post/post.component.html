@@ -19,8 +19,8 @@
     <mat-card-content>
         <h3>{{post.title}}</h3>
         <p>{{post.body}}</p>
-        <div style="width: 100%; text-align: right;">
-            <span>5</span>
+        <div class="comment-counter">
+            <span>{{commentCount}}</span>
             <i class="fa-duotone fa-solid fa-comment" style="margin: 0 5px;"></i>
         </div>
     </mat-card-content>
@@ -30,15 +30,19 @@
         <button mat-button type="button">
             <mat-icon>thumb_up</mat-icon> Like
         </button>
-        <button mat-button type="button">
+        <button mat-button type="button" (click)="commentForm.commentBox.nativeElement.focus()">
             <mat-icon>comment</mat-icon> Comment
         </button>
-        <button mat-button type="button">
+        <button mat-button type=" button">
             <mat-icon>share</mat-icon> Share
         </button>
     </mat-card-actions>
     <mat-divider></mat-divider>
-    <mat-card-content>
+    <mat-card-content class="comment-section">
+        <app-comment-section [postId]="post.id" [newComment]="newComment"
+            (commentCountEvent)="commentCount=$event"></app-comment-section>
+        <app-comment-form #commentForm (commentPostEvent)="renderNewComment($event)"
+            [postId]="post.id"></app-comment-form>
     </mat-card-content>
 </mat-card>
 

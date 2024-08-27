@@ -1,0 +1,48 @@
+form {
+    margin-top: 20px;
+}
+
+::ng-deep .mat-form-field {
+    width: 100%;
+
+    .mat-form-field-wrapper {
+        padding: 0;
+
+        .mat-form-field-flex {
+            border-radius: 20px !important;
+            padding-top: 0 !important;
+
+            .mat-form-field-infix {
+                padding-bottom: 5px;
+            }
+        }
+
+        .mat-form-field-underline {
+            display: none;
+        }
+    }
+}
+
+.comment-actions-container {
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+
+    button {
+        height: 30px;
+        width: 30px;
+        line-height: 30px;
+
+        .mat-icon {
+            margin-left: 4px;
+        }
+    }
+
+    .action-icons {
+        .mat-icon {
+            font-size: 18px;
+            margin: 0 3px;
+            cursor: pointer;
+        }
+    }
+}

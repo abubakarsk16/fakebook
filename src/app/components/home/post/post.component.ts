@@ -7,7 +7,7 @@ import {
   Output,
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { Post } from 'src/app/interfaces/post.interface';
 import { User } from 'src/app/interfaces/user.interface';
 import { UserService } from 'src/app/services/user.service';
@@ -15,6 +15,7 @@ import { EditpostComponent } from '../editpost/editpost.component';
 import { PostService } from 'src/app/services/post.service';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import { ConfirmService } from 'src/app/services/confirm.service';
+import { Comment } from 'src/app/interfaces/comment.interface';
 
 @Component({
   selector: 'app-post',
@@ -23,13 +24,14 @@ import { ConfirmService } from 'src/app/services/confirm.service';
 })
 export class PostComponent implements OnInit, OnDestroy {
   postDate = Date.now();
+  userOfPost!: User;
+  loadingUser: boolean = true;
+  newComment!: Comment;
+  commentCount: number = 0;
 
   @Input() post!: Post;
   @Output() dialogResult = new EventEmitter<Post>();
   @Output() deletePostEvent = new EventEmitter<number>();
-
-  userOfPost!: User;
-  loadingUser: boolean = true;
 
   dialogSubscription!: Subscription;
   deleteSubscription!: Subscription;
@@ -92,6 +94,11 @@ export class PostComponent implements OnInit, OnDestroy {
     }
     return;
   }
+
+  renderNewComment(createdComment: Comment) {
+    this.newComment = createdComment;
+  }
+
   ngOnDestroy(): void {
     if (this.dialogSubscription) {
       this.dialogSubscription.unsubscribe();
