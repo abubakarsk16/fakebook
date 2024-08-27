@@ -23,4 +23,18 @@ export class CommentService {
       { observe: 'response' }
     );
   }
+
+  updateComment(data: Comment): Observable<HttpResponse<Comment>> {
+    return this.http.put<Comment>(
+      `https://jsonplaceholder.typicode.com/comments/${data.id}`,
+      data,
+      { observe: 'response' }
+    );
+  }
+  deleteComment(id: number): Observable<HttpResponse<any>> {
+    return this.http.delete<Comment>(
+      `https://jsonplaceholder.typicode.com/comments/${id}`,
+      { observe: 'response' }
+    );
+  }
 }

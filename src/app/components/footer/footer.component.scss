@@ -5,3 +5,37 @@
     right: 0;
     z-index: 1000;
 }
+
+footer {
+    height: auto;
+    width: 100vw;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.left-content .icon {
+    font-size: 40px;
+}
+
+.left-content h2 {
+    display: inline-block;
+    line-height: 40px;
+    vertical-align: top;
+    margin: 0 20px;
+}
+
+.right-content {
+    width: 300px;
+}
+
+.right-content p {
+    font-size: 12px;
+    font-weight: normal;
+    line-height: normal;
+    text-wrap: wrap;
+    margin: 10px 0;
+}

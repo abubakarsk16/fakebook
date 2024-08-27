@@ -66,6 +66,16 @@ export class CommentSectionComponent implements OnInit, OnChanges, OnDestroy {
     return comment.id;
   }
 
+  renderEditedComment(data: Comment) {
+    this.comments = this.comments.map((value) =>
+      value.id !== data.id ? value : data
+    );
+  }
+  removeComment(id: number) {
+    this.comments = this.comments.filter((comment) => comment.id !== id);
+    this.commentCountEvent.emit(this.comments.length);
+  }
+
   ngOnDestroy(): void {
     if (this.fetchCmntsSubs) {
       this.fetchCmntsSubs.unsubscribe();

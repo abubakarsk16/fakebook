@@ -1,11 +1,18 @@
 <div class="available-comments">
-    <!-- render only one comment initially -->
-    <app-comment *ngIf="!(loadingComments||showAll)" [comment]="comments[0]"></app-comment>
+    <ng-container *ngIf="!loadingComments&&comments.length>0">
+        <!-- render only one comment initially -->
+        <app-comment [comment]="comments[0]" (editEvent)="renderEditedComment($event)"
+            (deleteEvent)="removeComment($event)"></app-comment>
 
-    <!-- show all comments on button click -->
-    <ng-container *ngIf="!(loadingComments)&&showAll">
-        <app-comment *ngFor="let comment of comments; trackBy: trackById" [comment]="comment"></app-comment>
+        <!-- show all comments on button click -->
+        <ng-container *ngIf="showAll">
+            <app-comment *ngFor="let comment of comments | slice: 1; trackBy: trackById" [comment]="comment"
+                (editEvent)="renderEditedComment($event)" (deleteEvent)="removeComment($event)"></app-comment>
+        </ng-container>
     </ng-container>
+    <p *ngIf="comments.length===0" class="no-comments-text">No comments yet
+        <i class="fa-regular fa-comment-exclamation"></i>
+    </p>
 
     <!-- loading placeholder -->
     <div *ngIf="loadingComments" class="loading-placeholder-container">
@@ -14,6 +21,6 @@
     </div>
 
     <!-- button to toggle all comments show -->
-    <button *ngIf="!loadingComments" mat-button type="button" class="comments-toggle-button"
-        (click)="toggleCommentsShow()">{{showAll?'Showless...':'Show more...'}}</button>
+    <button *ngIf="!loadingComments&&comments.length>1" mat-button type="button" class="comments-toggle-button"
+        (click)="toggleCommentsShow()">{{showAll?'Show less...':'Show all...'}}</button>
 </div>

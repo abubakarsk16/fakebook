@@ -1,18 +1,20 @@
-<form [formGroup]="newComment">
+<form [formGroup]="editedComment">
     <mat-form-field appearance="fill" class="comment-field">
         <textarea #commentBox matInput formControlName="body" placeholder="Write a comment..." name="body"
-            id="comment-body" (focus)="handleFieldFocus(commentBox, commentActions)"
-            (keydown)="handleKeyDown($event, commentBox)"></textarea>
+            id="comment-body" (focus)="handleFieldFocus(commentActions)" (keydown)="handleKeyDown($event, commentBox)"
+            rows="5" autofocus></textarea>
         <div #commentActions class="comment-actions-container">
             <div class="action-icons">
                 <mat-icon><i class="fa-regular fa-face-grin"></i></mat-icon>
                 <mat-icon><i class="fa-regular fa-camera"></i></mat-icon>
                 <mat-icon><i class="fa-regular fa-gif"></i></mat-icon>
             </div>
-            <button mat-icon-button matSuffix type="button" color="primary" [disabled]="commentBox.value.trim()===''"
-                (click)="postComment(newComment)">
-                <mat-icon>send</mat-icon>
+            <button mat-button matSuffix type="button" color="primary"
+                [disabled]="commentBox.value.trim()===''||editedComment.value.body===comment.body"
+                (click)="editComment(editedComment.value)">
+                save
             </button>
         </div>
     </mat-form-field>
+    <button type="button" color="inherit" class="cancel-button" (click)="handleCancel()">cancel</button>
 </form>

@@ -16,6 +16,11 @@ import { PostService } from 'src/app/services/post.service';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import { ConfirmService } from 'src/app/services/confirm.service';
 import { Comment } from 'src/app/interfaces/comment.interface';
+import { CommentBottomSheetComponent } from './comment-bottom-sheet/comment-bottom-sheet.component';
+import { LayoutService } from 'src/app/services/layout.service';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { MatButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-post',
@@ -28,6 +33,8 @@ export class PostComponent implements OnInit, OnDestroy {
   loadingUser: boolean = true;
   newComment!: Comment;
   commentCount: number = 0;
+
+  isMobile$ = this.layoutService.isMobile();
 
   @Input() post!: Post;
   @Output() dialogResult = new EventEmitter<Post>();
@@ -42,7 +49,9 @@ export class PostComponent implements OnInit, OnDestroy {
     private editDialog: MatDialog,
     private postService: PostService,
     private alert: SnackbarService,
-    private confirmService: ConfirmService
+    private confirmService: ConfirmService,
+    private bottomSheet: MatBottomSheet,
+    private layoutService: LayoutService
   ) {}
 
   ngOnInit(): void {
@@ -97,6 +106,10 @@ export class PostComponent implements OnInit, OnDestroy {
 
   renderNewComment(createdComment: Comment) {
     this.newComment = createdComment;
+  }
+
+  commentButtonClick() {
+    this.bottomSheet.open(CommentBottomSheetComponent, { data: {} });
   }
 
   ngOnDestroy(): void {

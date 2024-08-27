@@ -1,5 +1,4 @@
 import {
-  AfterViewInit,
   Component,
   ElementRef,
   EventEmitter,
@@ -24,10 +23,13 @@ export class CommentFormComponent implements OnInit {
   newComment!: FormGroup;
 
   @Output() commentPostEvent = new EventEmitter<Comment>();
+  @Output() editEvent = new EventEmitter<Comment>();
   @Input() postId!: number;
+  @Input() updatedComment!: Comment;
   @ViewChild('commentBox') commentBox!: ElementRef;
 
   createSubs!: Subscription;
+  updateSubs!: Subscription;
   constructor(
     private fb: FormBuilder,
     private commentService: CommentService,
@@ -37,6 +39,7 @@ export class CommentFormComponent implements OnInit {
 
   ngOnInit(): void {
     const user = this.authService.getAuthUser();
+
     this.newComment = this.fb.group({
       postId: [this.postId],
       name: [user.name],
@@ -45,7 +48,8 @@ export class CommentFormComponent implements OnInit {
     });
   }
 
-  handleFieldFocus(divEl: HTMLDivElement) {
+  handleFieldFocus(textarea: HTMLTextAreaElement, divEl: HTMLDivElement) {
+    textarea.rows = 5;
     divEl.style.display = 'flex';
   }
 

@@ -1,4 +1,4 @@
-<div class="comment-container" [id]="'comment-'+comment.id">
+<div *ngIf="!isEditMode" class="comment-container" [id]="'comment-'+comment.id">
     <div class="comment">
         <div mat-card-avatar class="avatar"></div>
         <div class="comment-bubble">
@@ -14,14 +14,18 @@
         <span>{{date|date}}</span>
     </div>
 </div>
+<ng-container *ngIf="isEditMode">
+    <app-comment-edit-form [comment]="comment" (editEvent)="getAndForwardComment($event)"
+        (cancelEvent)="cancelEditing()"></app-comment-edit-form>
+</ng-container>
 
 <!-- Comment menu -->
 <mat-menu #commentMenu="matMenu" [id]="'menu-comment-'+comment.id">
-    <button mat-menu-item>
+    <button mat-menu-item (click)="showEditForm()">
         <mat-icon>edit</mat-icon>
         <span>Edit</span>
     </button>
-    <button mat-menu-item>
+    <button mat-menu-item (click)="handleDeleteComment(comment.id)">
         <mat-icon>delete</mat-icon>
         <span>Delete</span>
     </button>

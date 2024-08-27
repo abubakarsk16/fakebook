@@ -54,6 +54,9 @@ import { SidenavContentComponent } from './components/sidenav-content/sidenav-co
 import { CommentComponent } from './components/home/post/comment/comment.component';
 import { CommentFormComponent } from './components/home/post/comment-form/comment-form.component';
 import { CommentSectionComponent } from './components/home/post/comment-section/comment-section.component';
+import { CommentEditFormComponent } from './components/home/post/comment/comment-edit-form/comment-edit-form.component';
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import { CommentBottomSheetComponent } from './components/home/post/comment-bottom-sheet/comment-bottom-sheet.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -79,6 +82,8 @@ import { CommentSectionComponent } from './components/home/post/comment-section/
     CommentComponent,
     CommentFormComponent,
     CommentSectionComponent,
+    CommentEditFormComponent,
+    CommentBottomSheetComponent,
   ],
   imports: [
     BrowserModule,
@@ -110,6 +115,7 @@ import { CommentSectionComponent } from './components/home/post/comment-section/
     NgScrollbarModule,
     MatTooltipModule,
     MatTableModule,
+    MatBottomSheetModule,
   ],
   providers: [
     // { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true },
