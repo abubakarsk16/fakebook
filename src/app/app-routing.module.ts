@@ -7,6 +7,7 @@ import { NotfoundComponent } from './components/notfound/notfound.component';
 import { MainComponent } from './components/main/main.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { UsersComponent } from './components/users/users.component';
+import { AlbumsComponent } from './components/albums/albums.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,7 @@ const routes: Routes = [
       { path: '', component: HomeComponent },
       { path: 'profile/:userId', component: ProfileComponent },
       { path: 'users', component: UsersComponent },
+      { path: 'albums', component: AlbumsComponent },
     ],
   },
   { path: 'login', component: LoginComponent },

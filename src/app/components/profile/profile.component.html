@@ -1,0 +1,106 @@
+<div class="container">
+    <div class="header">
+        <div class="cover-photo">
+            <button mat-button type="button" disabled>
+                Cover photo
+                <mat-icon matSuffix>image</mat-icon>
+            </button>
+        </div>
+        <div class="user">
+            <div mat-card-avatar class="avatar user-avatar user-avatar-large"></div>
+            <h1 class="user-name">{{user.name}}</h1>
+        </div>
+    </div>
+    <div class="body">
+        <div class="left-column">
+            <mat-card>
+                <mat-card-title>General info</mat-card-title>
+                <mat-divider></mat-divider>
+                <mat-card-content>
+                    <table class="info">
+                        <tr>
+                            <th>Name</th>
+                            <td>{{user.name}}</td>
+                        </tr>
+                        <tr>
+                            <th>Username</th>
+                            <td>{{user.username}}</td>
+                        </tr>
+                    </table>
+                </mat-card-content>
+            </mat-card>
+            <mat-card>
+                <mat-card-title>Address</mat-card-title>
+                <mat-divider></mat-divider>
+                <mat-card-content>
+                    <table class="info">
+                        <tr>
+                            <th>Street</th>
+                            <td>{{user.address.street}}</td>
+                        </tr>
+                        <tr>
+                            <th>Suite</th>
+                            <td>{{user.address.suite}}</td>
+                        </tr>
+                        <tr>
+                            <th>City</th>
+                            <td>{{user.address.city}}</td>
+                        </tr>
+                        <tr>
+                            <th>Zip code</th>
+                            <td>{{user.address.zipcode}}</td>
+                        </tr>
+                    </table>
+                </mat-card-content>
+            </mat-card>
+            <mat-card>
+                <mat-card-title>Contact info</mat-card-title>
+                <mat-divider></mat-divider>
+                <mat-card-content>
+                    <table class="info">
+                        <tr>
+                            <th>Email</th>
+                            <td>{{user.email}}</td>
+                        </tr>
+                        <tr>
+                            <th>Phone</th>
+                            <td>{{user.phone}}</td>
+                        </tr>
+                    </table>
+                </mat-card-content>
+            </mat-card>
+            <mat-card>
+                <mat-card-title>Business</mat-card-title>
+                <mat-divider></mat-divider>
+                <mat-card-content>
+                    <table class="info">
+                        <tr>
+                            <th>Company name</th>
+                            <td>{{user.company.name}}</td>
+                        </tr>
+                        <tr>
+                            <th>Website</th>
+                            <td>{{user.website}}</td>
+                        </tr>
+                        <tr>
+                            <th>Catch phrase</th>
+                            <td>{{user.company.catchPhrase}}</td>
+                        </tr>
+                        <tr>
+                            <th>BS</th>
+                            <td>{{user.company.bs}}</td>
+                        </tr>
+                    </table>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <div class="right-column">
+            <mat-card>
+                <mat-card-title>Posts</mat-card-title>
+            </mat-card>
+            <ng-container *ngFor="let post of posts">
+                <app-post [post]="post"></app-post>
+            </ng-container>
+        </div>
+    </div>
+</div>

@@ -2,6 +2,7 @@ import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { User } from 'src/app/interfaces/user.interface';
 import { AuthService } from 'src/app/services/auth.service';
 import { ConfirmService } from 'src/app/services/confirm.service';
 import { LayoutService } from 'src/app/services/layout.service';
@@ -15,6 +16,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   isHandset$ = this.layoutService.isHandset();
   isLaptopSmall$ = this.layoutService.isLaptopSmall();
   isMobile$ = this.layoutService.isMobile();
+  loggedInUser!: User;
 
   @Input() leftSidenav!: MatSidenav;
   isSidenavOpen: boolean = false;
@@ -29,6 +31,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this.loggedInUser = this.authService.getAuthUser();
     this.subsscription = this.router.events.subscribe(() => {
       this.leftSidenav.close();
     });

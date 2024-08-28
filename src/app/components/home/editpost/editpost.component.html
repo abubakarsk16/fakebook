@@ -10,7 +10,7 @@
 <form [formGroup]="editedPost" (ngSubmit)="handlePostEdit(editedPost.value)">
     <mat-dialog-content class="dialog-content">
         <a mat-dialog-close [routerLink]="'/profile/'+data.post.userId" class="user-info">
-            <img mat-card-avatar src="../../../assets/images/man.svg" alt="avatar">
+            <div mat-card-avatar class="avatar user-avatar"></div>
             <strong class="username">{{data.user.name}}</strong>
         </a>
         <mat-form-field appearance="fill" class="form-card-field">

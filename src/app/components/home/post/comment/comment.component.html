@@ -1,6 +1,6 @@
 <div *ngIf="!isEditMode" class="comment-container" [id]="'comment-'+comment.id">
     <div class="comment">
-        <div mat-card-avatar class="avatar"></div>
+        <div mat-card-avatar class="avatar comment-avatar"></div>
         <div class="comment-bubble">
             <span><strong>{{comment.name}}</strong></span>
             <p [innerText]="comment.body"></p>

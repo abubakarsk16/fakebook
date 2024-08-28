@@ -1,0 +1,29 @@
+<div mat-dialog-title class="dialog-header">
+    <h1 class="title">Add a new user</h1>
+    <button mat-icon-button mat-dialog-close type="button">
+        <mat-icon>close</mat-icon>
+    </button>
+</div>
+<form [formGroup]="newUserForm" (ngSubmit)="addUser(newUserForm)">
+    <mat-dialog-content>
+        <mat-form-field appearance="fill">
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="name" name="name" autocomplete="name" cdkFocusInitial>
+            <!-- <mat-error *ngIf="newUserForm.get('name')?.hasError('required')">Name is required</mat-error> -->
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Username</mat-label>
+            <input matInput formControlName="username" name="username" autocomplete="username">
+            <!-- <mat-error *ngIf="newUserForm.get('username')?.hasError('required')">Username is required</mat-error> -->
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" name="email" placeholder="example@gmail.com" autocomplete="email">
+            <!-- <mat-error *ngIf="newUserForm.get('email')?.hasError('required')">Email is required</mat-error> -->
+        </mat-form-field>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button mat-flat-button type="submit" color="primary"
+            [disabled]="newUserForm.invalid||isSubmitDisable()">Save</button>
+    </mat-dialog-actions>
+</form>

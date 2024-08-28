@@ -1,0 +1,22 @@
+.container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    .mat-card {
+        max-width: 150px;
+
+        img {
+            height: 100%;
+            width: 100%;
+        }
+    }
+
+    .album-details {
+        margin: 0 20px;
+
+        p {
+            width: 250px;
+        }
+    }
+}

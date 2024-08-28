@@ -183,3 +183,27 @@ textarea {
 .mat-ink-bar {
   visibility: hidden !important;
 }
+
+.avatar {
+  background-size: cover;
+  border: 1px solid gray;
+  border-radius: 50%;
+}
+
+.user-avatar {
+  background-image: url('./assets/images/man.png');
+}
+
+.post-avatar {
+  background-image: url('./assets/images/man2.svg');
+}
+
+.comment-avatar {
+  background-image: url('./assets/images/woman.svg');
+  height: 30px !important;
+  width: 30px !important;
+}
+
+input::placeholder {
+  font-style: italic;
+}

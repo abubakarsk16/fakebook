@@ -46,7 +46,6 @@ import { LoadingPlaceholderComponent } from './components/loading-placeholder/lo
 import { UsersComponent } from './components/users/users.component';
 import { MatTableModule } from '@angular/material/table';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { TestComponent } from './components/test/test.component';
 import { LeftSidenavComponent } from './components/left-sidenav/left-sidenav.component';
 import { RightSidenavComponent } from './components/right-sidenav/right-sidenav.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -57,6 +56,14 @@ import { CommentSectionComponent } from './components/home/post/comment-section/
 import { CommentEditFormComponent } from './components/home/post/comment/comment-edit-form/comment-edit-form.component';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { CommentBottomSheetComponent } from './components/home/post/comment-bottom-sheet/comment-bottom-sheet.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { AddUserDialogComponent } from './components/users/add-user-dialog/add-user-dialog.component';
+import { EditUserDialogComponent } from './components/users/edit-user-dialog/edit-user-dialog.component';
+import { AlbumsComponent } from './components/albums/albums.component';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { AlbumDetailComponent } from './components/albums/album-detail/album-detail.component';
+import { PhotosComponent } from './components/photos/photos.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -74,7 +81,6 @@ import { CommentBottomSheetComponent } from './components/home/post/comment-bott
     LoadingPlaceholderComponent,
     UsersComponent,
     NavbarComponent,
-    TestComponent,
     LeftSidenavComponent,
     RightSidenavComponent,
     FooterComponent,
@@ -84,6 +90,11 @@ import { CommentBottomSheetComponent } from './components/home/post/comment-bott
     CommentSectionComponent,
     CommentEditFormComponent,
     CommentBottomSheetComponent,
+    AddUserDialogComponent,
+    EditUserDialogComponent,
+    AlbumsComponent,
+    AlbumDetailComponent,
+    PhotosComponent,
   ],
   imports: [
     BrowserModule,
@@ -116,6 +127,9 @@ import { CommentBottomSheetComponent } from './components/home/post/comment-bott
     MatTooltipModule,
     MatTableModule,
     MatBottomSheetModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatExpansionModule,
   ],
   providers: [
     // { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true },

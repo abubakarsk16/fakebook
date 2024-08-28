@@ -1,6 +1,6 @@
 <!-- Main menu -->
 <mat-menu #menu="matMenu">
-    <button mat-menu-item routerLink="/profile">
+    <button mat-menu-item [routerLink]="'/profile/'+loggedInUser.id">
         <mat-icon>person</mat-icon>
         <span>Profile</span>
     </button>
@@ -48,8 +48,7 @@
                     <i class="fa-brands fa-facebook-messenger"></i>
                 </mat-icon>
             </button>
-            <button mat-icon-button [matMenuTriggerFor]="menu" matTooltip="Menu">
-                <img mat-card-avatar src="../../../../assets/images/man.svg" alt="avatar">
+            <button [matMenuTriggerFor]="menu" matTooltip="Menu" class="avatar user-avatar menu-show-button">
             </button>
         </div>
     </nav>

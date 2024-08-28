@@ -1,7 +1,7 @@
 <div class="sidenav-content">
     <mat-nav-list>
         <a mat-list-item matTooltip="Profile" [routerLink]="'/profile/'+loggedInUser.id">
-            <img mat-list-avatar src="../../../assets/images/man.svg" alt="user avatar" class="user-profile-link">
+            <div mat-list-avatar class="avatar user-avatar"></div>
             <span class="list-span"><strong>{{loggedInUser.name}}</strong></span>
         </a>
         <a mat-list-item routerLink="/users">
@@ -20,7 +20,7 @@
             <mat-icon mat-list-icon>tv_icon</mat-icon>
             <span class="list-span">Videos</span>
         </a>
-        <a mat-list-item href="#">
+        <a mat-list-item routerLink="/albums">
             <mat-icon mat-list-icon>photo_library</mat-icon>
             <span class="list-span">Albums</span>
         </a>

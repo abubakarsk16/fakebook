@@ -1,0 +1,20 @@
+<mat-expansion-panel>
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            {{album.title}}
+        </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div class="container" [id]="'detail-album-'+album.id">
+        <a href="#">
+            <mat-card class="photo-card">
+                <img src="../../../../assets/images/album-thumbnail.png" alt="Album thumbnail">
+            </mat-card>
+        </a>
+        <div class="album-details">
+            <h2>{{album.title}}</h2>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente aliquid quasi reiciendis tempore
+                assumenda
+                eaque natus asperiores magnam repellendus eligendi.</p>
+        </div>
+    </div>
+</mat-expansion-panel>

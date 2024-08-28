@@ -41,4 +41,11 @@ export class PostService {
       { observe: 'response' }
     );
   }
+
+  fetchPostByUser(userId: number): Observable<HttpResponse<Post[]>> {
+    return this.http.get<Post[]>(
+      `https://jsonplaceholder.typicode.com/posts?userId=${userId}`,
+      { observe: 'response' }
+    );
+  }
 }

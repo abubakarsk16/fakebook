@@ -1,0 +1,5 @@
+<mat-accordion>
+    <ng-container *ngIf="!loading">
+        <app-album-detail *ngFor="let album of albums" [album]="album"></app-album-detail>
+    </ng-container>
+</mat-accordion>

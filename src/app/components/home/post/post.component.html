@@ -1,6 +1,6 @@
 <mat-card class="post-card" [id]="'post-'+post.id">
     <mat-card-header>
-        <div mat-card-avatar class="user-avatar"></div>
+        <div mat-card-avatar class="avatar post-avatar"></div>
         <mat-card-title>
             <a *ngIf="!loadingUser" [routerLink]="'/profile/'+post.userId">{{userOfPost.name}}</a>
             <app-loading-placeholder *ngIf="loadingUser" height="20px" width="150px"

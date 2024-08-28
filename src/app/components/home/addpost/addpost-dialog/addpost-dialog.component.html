@@ -9,8 +9,9 @@
 
 <form [formGroup]="newPost" (ngSubmit)="handleCreatePost(newPost.value)">
     <mat-dialog-content class="dialog-content">
-        <a mat-dialog-close routerLink="/profile" class="user-info">
-            <img mat-card-avatar src="../../../../assets/images/man.svg" alt="avatar">
+        <a mat-dialog-close [routerLink]="'/profile'+user.id" class="user-info">
+            <!-- <img mat-card-avatar src="../../../../assets/images/man.svg" alt="avatar"> -->
+            <div mat-card-avatar class="avatar user-avatar"></div>
             <strong class="username">{{user.name}}</strong>
         </a>
         <mat-form-field appearance="fill" class="form-card-field">

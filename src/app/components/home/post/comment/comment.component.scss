@@ -8,13 +8,6 @@
         display: flex;
         align-items: flex-start;
 
-        .avatar {
-            background-image: url('../../../../../assets/images/man.svg');
-            background-size: cover;
-            height: 30px;
-            width: 30px;
-        }
-
         .comment-bubble {
             background-color: rgba(0, 0, 0, 0.06);
             border-radius: 20px;
