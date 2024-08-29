@@ -160,7 +160,7 @@ textarea {
   margin: 0 10px;
 }
 
-*::-webkit-scrollbar {
+.main *::-webkit-scrollbar {
   width: 5px;
   height: 5px;
 }
@@ -170,13 +170,13 @@ textarea {
   height: 7px;
 }
 
-*::-webkit-scrollbar-thumb {
+.main *::-webkit-scrollbar-thumb {
   background-color: rgba(0, 0, 0, 0.26);
   border-radius: 30px;
   visibility: hidden;
 }
 
-*:hover::-webkit-scrollbar-thumb {
+.main *:hover::-webkit-scrollbar-thumb {
   visibility: visible;
 }
 

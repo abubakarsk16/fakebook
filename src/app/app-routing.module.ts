@@ -9,6 +9,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { UsersComponent } from './components/users/users.component';
 import { AlbumsComponent } from './components/albums/albums.component';
 import { PhotosComponent } from './components/photos/photos.component';
+import { GuestGuard } from './guards/guest.guard';
 
 const routes: Routes = [
   {
@@ -23,7 +24,7 @@ const routes: Routes = [
       { path: 'album/photos', component: PhotosComponent },
     ],
   },
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent, canActivate: [GuestGuard] },
   { path: '**', component: NotfoundComponent },
 ];
 

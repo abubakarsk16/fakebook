@@ -8,6 +8,7 @@ import { SnackbarService } from './snackbar.service';
   providedIn: 'root',
 })
 export class AuthService {
+  previousUrl!: string | null;
   constructor(
     private router: Router,
     private alert: SnackbarService,
