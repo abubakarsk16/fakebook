@@ -70,7 +70,6 @@ export class CommentFormComponent implements OnInit {
         .createComment(commentForm.value)
         .subscribe({
           next: (res) => {
-            console.log(res);
             if (res.ok) {
               this.commentPostEvent.emit(res.body!);
             }

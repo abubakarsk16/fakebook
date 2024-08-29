@@ -14,6 +14,7 @@ import { UserService } from 'src/app/services/user.service';
 export class EditUserDialogComponent implements OnInit {
   editUserForm!: FormGroup;
   subscription!: Subscription;
+  loading: boolean = false;
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
@@ -45,14 +46,17 @@ export class EditUserDialogComponent implements OnInit {
   }
 
   editUser(form: FormGroup) {
+    this.loading = true;
     this.subscription = this.userService.updateUser(form.value).subscribe({
       next: (res) => {
+        this.loading = false;
         if (res.ok) {
           this.alert.showMessage('User updated successfully', 'success');
           this.dialogRef.close(res.body);
         }
       },
       error: (err) => {
+        this.loading = false;
         this.alert.showMessage('Error while adding user', 'error');
       },
     });

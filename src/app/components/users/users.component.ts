@@ -15,7 +15,7 @@ import { ConfirmService } from 'src/app/services/confirm.service';
 })
 export class UsersComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['id', 'name', 'username', 'email', 'actions'];
-  dataSource!: User[];
+  dataSource: User[] = [];
   loading: boolean = true;
   fetchSubs!: Subscription;
   resultSubs!: Subscription;

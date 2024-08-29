@@ -1,0 +1,31 @@
+.container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    .mat-card {
+        flex: 20%;
+        max-width: 20%;
+        margin: 10px 15px;
+    }
+}
+
+// Small laptops
+@media screen and (max-width: 1024px) {
+    .container {
+        .mat-card {
+            flex: 25%;
+            max-width: 25%;
+        }
+    }
+}
+
+// Mobiles
+@media screen and (max-width: 425px) {
+    .container {
+        .mat-card {
+            flex: 100%;
+            max-width: 100%;
+        }
+    }
+}

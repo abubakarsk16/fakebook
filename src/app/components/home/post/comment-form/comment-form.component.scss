@@ -1,4 +1,5 @@
 .new-comment-form {
+    display: flex;
     margin-top: 20px;
 
     ::ng-deep .mat-form-field {
@@ -20,6 +21,16 @@
                 display: none;
             }
         }
+    }
+
+    .comment-field {
+        flex-grow: 1;
+    }
+
+    .custom-avatar-size {
+        height: 30px;
+        width: 30px;
+        margin-right: 5px;
     }
 }
 

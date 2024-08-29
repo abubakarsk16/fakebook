@@ -5,6 +5,7 @@
 
     .mat-card {
         max-width: 150px;
+        border: 1px solid rgba(0, 0, 0, 0.06);
 
         img {
             height: 100%;
@@ -19,4 +20,16 @@
             width: 250px;
         }
     }
+}
+
+.mat-expansion-panel:first-of-type,
+.mat-expansion-panel:last-of-type {
+    border-radius: 0 !important;
+}
+
+.mat-expansion-panel-header-description {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-size: 12px;
 }

@@ -21,7 +21,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   @Input() leftSidenav!: MatSidenav;
   isSidenavOpen: boolean = false;
 
-  subsscription!: Subscription;
+  subscription!: Subscription;
 
   constructor(
     private layoutService: LayoutService,
@@ -32,9 +32,9 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.loggedInUser = this.authService.getAuthUser();
-    this.subsscription = this.router.events.subscribe(() => {
-      this.leftSidenav.close();
-    });
+    // this.subscription = this.router.events.subscribe(() => {
+    //   this.leftSidenav.close();
+    // });
   }
 
   toggleSidenav() {
@@ -52,8 +52,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.subsscription) {
-      this.subsscription.unsubscribe();
+    if (this.subscription) {
+      this.subscription.unsubscribe();
     }
   }
 }

@@ -23,7 +23,12 @@
         </mat-form-field>
     </mat-dialog-content>
     <mat-dialog-actions>
-        <button mat-flat-button type="submit" color="primary"
-            [disabled]="newUserForm.invalid||isSubmitDisable()">Save</button>
+        <button mat-flat-button [ngStyle]="{'padding': loading?'8px 0':''}" type="submit" color="primary"
+            [disabled]="newUserForm.invalid||isSubmitDisable()||loading">
+            <div *ngIf="loading" class="spinner-button-label">
+                <mat-spinner></mat-spinner>
+            </div>
+            <span *ngIf="!loading">Save</span>
+        </button>
     </mat-dialog-actions>
 </form>

@@ -1,1 +1,8 @@
-<p>photos works!</p>
+<div *ngIf="!loading" class="container">
+    <mat-card *ngFor="let photo of photos; trackBy: trackById" [id]="'photo-'+photo.id">
+        <img mat-card-image [src]="photo.url" [alt]="photo.title">
+        <mat-card-header>
+            <mat-card-subtitle>{{photo.title}}</mat-card-subtitle>
+        </mat-card-header>
+    </mat-card>
+</div>

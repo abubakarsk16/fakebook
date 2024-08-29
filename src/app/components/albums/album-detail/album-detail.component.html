@@ -1,11 +1,14 @@
 <mat-expansion-panel>
     <mat-expansion-panel-header>
         <mat-panel-title>
-            {{album.title}}
+            <a [routerLink]="['/album/photos']" [queryParams]="{id: album.id}">{{album.title}}</a>
         </mat-panel-title>
+        <mat-panel-description>
+            Created on {{date|date}}
+        </mat-panel-description>
     </mat-expansion-panel-header>
     <div class="container" [id]="'detail-album-'+album.id">
-        <a href="#">
+        <a [routerLink]="['/album/photos']" [queryParams]="{id: album.id}">
             <mat-card class="photo-card">
                 <img src="../../../../assets/images/album-thumbnail.png" alt="Album thumbnail">
             </mat-card>

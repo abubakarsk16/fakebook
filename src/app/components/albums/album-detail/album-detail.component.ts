@@ -8,6 +8,7 @@ import { Album } from 'src/app/interfaces/album.interface';
 })
 export class AlbumDetailComponent implements OnInit {
   @Input() album!: Album;
+  date: number = Date.now();
   constructor() {}
 
   ngOnInit(): void {}

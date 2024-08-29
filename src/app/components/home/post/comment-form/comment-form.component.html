@@ -1,4 +1,5 @@
 <form [formGroup]="newComment" class="new-comment-form">
+    <div class="avatar user-avatar custom-avatar-size"></div>
     <mat-form-field appearance="fill" class="comment-field">
         <textarea #commentBox matInput formControlName="body" placeholder="Write a comment..." name="body"
             id="comment-body" (focus)="handleFieldFocus(commentBox, commentActions)"

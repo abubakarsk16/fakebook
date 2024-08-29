@@ -1,8 +1,7 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
-import { User } from 'src/app/interfaces/user.interface';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -12,6 +11,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./add-user-dialog.component.scss'],
 })
 export class AddUserDialogComponent implements OnInit {
+  loading: boolean = false;
   newUserForm!: FormGroup;
   subscription!: Subscription;
   constructor(
@@ -37,14 +37,17 @@ export class AddUserDialogComponent implements OnInit {
   }
 
   addUser(form: FormGroup) {
+    this.loading = true;
     this.subscription = this.userService.createUser(form.value).subscribe({
       next: (res) => {
+        this.loading = false;
         if (res.ok) {
           this.alert.showMessage('User added successfully', 'success');
           this.dialogRef.close(res.body);
         }
       },
       error: (err) => {
+        this.loading = false;
         this.alert.showMessage('Error while adding user', 'error');
       },
     });

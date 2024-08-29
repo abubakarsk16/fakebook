@@ -1,17 +1,17 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Album } from '../interfaces/album.interface';
+import { Photo } from '../interfaces/photo.interface';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AlbumService {
+export class PhotoService {
   constructor(private http: HttpClient) {}
 
-  fetchAlumsByUser(userId: number): Observable<HttpResponse<Album[]>> {
-    return this.http.get<Album[]>(
-      `https://jsonplaceholder.typicode.com/albums?userId=${userId}`,
+  getPhotosByAlbum(albumId: number): Observable<HttpResponse<Photo[]>> {
+    return this.http.get<Photo[]>(
+      `https://jsonplaceholder.typicode.com/photos?albumId=${albumId}`,
       { observe: 'response' }
     );
   }

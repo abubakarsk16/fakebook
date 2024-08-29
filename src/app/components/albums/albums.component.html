@@ -1,5 +1,13 @@
-<mat-accordion>
-    <ng-container *ngIf="!loading">
-        <app-album-detail *ngFor="let album of albums" [album]="album"></app-album-detail>
-    </ng-container>
-</mat-accordion>
+<div class="container">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>My albums</mat-card-title>
+            <mat-card-subtitle>Expend to see details</mat-card-subtitle>
+        </mat-card-header>
+    </mat-card>
+    <mat-accordion>
+        <ng-container *ngIf="!loading">
+            <app-album-detail *ngFor="let album of albums" [album]="album"></app-album-detail>
+        </ng-container>
+    </mat-accordion>
+</div>

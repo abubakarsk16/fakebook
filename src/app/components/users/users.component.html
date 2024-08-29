@@ -9,9 +9,9 @@
             </button>
         </mat-card-header>
     </mat-card>
-    <mat-card *ngIf="dataSource.length>0" class="table-card">
+    <mat-card *ngIf="!loading&&dataSource.length>0" class="table-card">
         <mat-card-content>
-            <table *ngIf="!loading" mat-table [dataSource]="dataSource" class="">
+            <table mat-table [dataSource]="dataSource" class="">
 
                 <!-- Id Column -->
                 <ng-container matColumnDef="id">
