@@ -3,4 +3,8 @@
         <mat-icon>close</mat-icon>
     </button>
 </div>
-<ng-content></ng-content>
+<div class="content">
+    <app-comment-section [postId]="data" [newComment]="newComment"
+        (commentCountEvent)="commentCount=$event"></app-comment-section>
+    <app-comment-form #commentForm (commentPostEvent)="renderNewComment($event)" [postId]="data"></app-comment-form>
+</div>

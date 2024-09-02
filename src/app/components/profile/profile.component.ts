@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Post } from 'src/app/interfaces/post.interface';
 import { User } from 'src/app/interfaces/user.interface';
+import { LayoutService } from 'src/app/services/layout.service';
 import { PostService } from 'src/app/services/post.service';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import { UserService } from 'src/app/services/user.service';
@@ -20,11 +21,14 @@ export class ProfileComponent implements OnInit, OnDestroy {
   paramSubs!: Subscription;
   userSubs!: Subscription;
   postSubs!: Subscription;
+
+  isHandset$ = this.layoutService.isHandset();
   constructor(
     private router: ActivatedRoute,
     private userService: UserService,
     private alert: SnackbarService,
-    private postService: PostService
+    private postService: PostService,
+    private layoutService: LayoutService
   ) {}
 
   ngOnInit(): void {

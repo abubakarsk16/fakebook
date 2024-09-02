@@ -5,6 +5,7 @@ import {
   OnDestroy,
   OnInit,
   Output,
+  ViewChild,
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
@@ -19,8 +20,7 @@ import { Comment } from 'src/app/interfaces/comment.interface';
 import { CommentBottomSheetComponent } from './comment-bottom-sheet/comment-bottom-sheet.component';
 import { LayoutService } from 'src/app/services/layout.service';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
-import { MatButton } from '@angular/material/button';
-import { MatIcon } from '@angular/material/icon';
+import { CommentFormComponent } from './comment-form/comment-form.component';
 
 @Component({
   selector: 'app-post',
@@ -39,10 +39,12 @@ export class PostComponent implements OnInit, OnDestroy {
   @Input() post!: Post;
   @Output() dialogResult = new EventEmitter<Post>();
   @Output() deletePostEvent = new EventEmitter<number>();
+  @ViewChild('commentForm') commentForm!: CommentFormComponent;
 
   dialogSubscription!: Subscription;
   deleteSubscription!: Subscription;
   userSubscription!: Subscription;
+  bottomSheetSubs!: Subscription;
 
   constructor(
     private userService: UserService,
@@ -109,7 +111,14 @@ export class PostComponent implements OnInit, OnDestroy {
   }
 
   commentButtonClick() {
-    this.bottomSheet.open(CommentBottomSheetComponent, { data: {} });
+    const bottomSheetRef = this.bottomSheet.open(CommentBottomSheetComponent, {
+      data: this.post.id,
+    });
+    this.bottomSheetSubs = bottomSheetRef.afterDismissed().subscribe({
+      next: (result) => {
+        this.commentCount = result;
+      },
+    });
   }
 
   ngOnDestroy(): void {
@@ -121,6 +130,9 @@ export class PostComponent implements OnInit, OnDestroy {
     }
     if (this.userSubscription) {
       this.userSubscription.unsubscribe();
+    }
+    if (this.bottomSheetSubs) {
+      this.bottomSheetSubs.unsubscribe();
     }
   }
 }

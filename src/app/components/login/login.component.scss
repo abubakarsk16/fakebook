@@ -1,11 +1,16 @@
 .main-container {
   background-image: url("../../../assets/images/BackgroundPattern.svg");
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
 }
 
 form {
   transform: translate(0, 50px);
+
+  .form-backdrop {
+    bottom: 4.5px;
+    background: rgba(255, 255, 255, 0.5);
+  }
 }
 
 .divider {

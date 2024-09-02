@@ -22,6 +22,7 @@ export class GuestGuard implements CanActivate {
         "If you navigate to login page, you'll be log out form this session\nAre you sure you want to continue?"
       );
       if (isConfirm) {
+        this.authService.logout();
         return true;
       } else {
         return false;

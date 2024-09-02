@@ -30,31 +30,24 @@
         <button mat-button type="button">
             <mat-icon>thumb_up</mat-icon> Like
         </button>
-        <button mat-button type="button" (click)="commentForm.commentBox.nativeElement.focus()">
+        <button *ngIf="!(isMobile$|async)" mat-button type="button"
+            (click)="commentForm.commentBox.nativeElement.focus()">
             <mat-icon>comment</mat-icon> Comment
         </button>
-        <!-- <button *ngIf="(isMobile$|async)" mat-button type="button" (click)="commentButtonClick()">
+        <button *ngIf="(isMobile$|async)" mat-button type="button" (click)="commentButtonClick()">
             <mat-icon>comment</mat-icon> Comment
-        </button> -->
+        </button>
         <button mat-button type=" button">
             <mat-icon>share</mat-icon> Share
         </button>
     </mat-card-actions>
     <mat-divider></mat-divider>
-    <mat-card-content class="comment-section">
+    <mat-card-content *ngIf="!(isMobile$|async)" class="comment-section">
         <app-comment-section [postId]="post.id" [newComment]="newComment"
             (commentCountEvent)="commentCount=$event"></app-comment-section>
         <app-comment-form #commentForm (commentPostEvent)="renderNewComment($event)"
             [postId]="post.id"></app-comment-form>
     </mat-card-content>
-    <!-- <ng-container *ngIf="isMobile$|async">
-        <app-comment-bottom-sheet>
-            <app-comment-section [postId]="post.id" [newComment]="newComment"
-                (commentCountEvent)="commentCount=$event"></app-comment-section>
-            <app-comment-form #commentForm (commentPostEvent)="renderNewComment($event)"
-                [postId]="post.id"></app-comment-form>
-        </app-comment-bottom-sheet>
-    </ng-container> -->
 </mat-card>
 
 <!-- Menu for post -->

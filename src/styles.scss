@@ -207,3 +207,18 @@ textarea {
 input::placeholder {
   font-style: italic;
 }
+
+.loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .mat-progress-spinner {
+    height: 30px !important;
+    width: 30px !important;
+  }
+
+  span {
+    margin: 0 10px;
+  }
+}

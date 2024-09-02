@@ -64,6 +64,7 @@ import { AlbumsComponent } from './components/albums/albums.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { AlbumDetailComponent } from './components/albums/album-detail/album-detail.component';
 import { PhotosComponent } from './components/photos/photos.component';
+import { MatStepperModule } from '@angular/material/stepper';
 @NgModule({
   declarations: [
     AppComponent,
@@ -130,6 +131,7 @@ import { PhotosComponent } from './components/photos/photos.component';
     MatPaginatorModule,
     MatSortModule,
     MatExpansionModule,
+    MatStepperModule,
   ],
   providers: [
     // { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true },

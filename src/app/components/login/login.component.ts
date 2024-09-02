@@ -22,7 +22,6 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   userMatched!: boolean;
   pswMatched!: boolean; //flags for auth
-
   subscription!: Subscription;
 
   constructor(

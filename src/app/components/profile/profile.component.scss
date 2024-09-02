@@ -65,9 +65,20 @@
         }
     }
 
+    .left-column-handset {
+        width: 100%;
+        height: auto;
+        padding: 0 10px;
+        position: static;
+    }
+
     .right-column {
         width: 40%;
         padding: 0 10px;
+    }
+
+    .right-column-handset {
+        width: 100%;
     }
 }
 

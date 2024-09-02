@@ -1,4 +1,4 @@
-<div class="container">
+<div *ngIf="!loading" class="container">
     <div class="header">
         <div class="cover-photo">
             <button mat-button type="button" disabled>
@@ -11,8 +11,8 @@
             <h1 class="user-name">{{user.name}}</h1>
         </div>
     </div>
-    <div class="body">
-        <div class="left-column">
+    <div class="body" [ngStyle]="{flexDirection: (isHandset$|async)?'column':'row'}">
+        <div [ngClass]="!(isHandset$|async)?'left-column':'left-column-handset'">
             <mat-card>
                 <mat-card-title>General info</mat-card-title>
                 <mat-divider></mat-divider>
@@ -94,7 +94,7 @@
                 </mat-card-content>
             </mat-card>
         </div>
-        <div class="right-column">
+        <div [ngClass]="!(isHandset$|async)?'right-column':'right-column-handset'">
             <mat-card>
                 <mat-card-title>Posts</mat-card-title>
             </mat-card>
@@ -103,4 +103,8 @@
             </ng-container>
         </div>
     </div>
+</div>
+<div *ngIf="loading" class="loader" style="margin-top: calc(50vh - 56px);">
+    <mat-spinner></mat-spinner>
+    <span>loading profile...</span>
 </div>

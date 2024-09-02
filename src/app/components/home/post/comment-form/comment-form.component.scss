@@ -1,5 +1,6 @@
 .new-comment-form {
     display: flex;
+    align-items: flex-start;
     margin-top: 20px;
 
     ::ng-deep .mat-form-field {
